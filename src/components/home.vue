@@ -1,43 +1,36 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
+import Banner from "@/components/template/banner/index.vue";
+import UserInfoBox from "@/components/template/userInfo/index.vue";
 
-defineProps({
-  msg: String,
-})
-
-const count = ref(0)
+// defineProps({
+//   msg: String,
+// });
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
-
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
+  <div>
+    <Banner class="h-[600px] border-b-4 border-[--subColor]" />
+    <div class="bg-[--mainColor] py-7">
+      <div class="container mx-auto">
+        <div class="flex">
+          <div class="w-1/4 px-2.5">
+            <div class="mb-2.5 rounded-md bg-[--thrColor]">
+              <div class="text-center">Select country</div>
+              <div class="flex justify-center">
+                <button>USA</button>
+                <button>Taiwan</button>
+              </div>
+            </div>
+            <div class="rounded-md bg-[--thrColor]">項目</div>
+          </div>
+          <div class="w-3/4 px-2.5">
+            <div class="flex flex-wrap rounded-md bg-[--thrColor]">
+              <UserInfoBox v-for="i in 5" :key="i" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Learn more about IDE Support for Vue in the
-    <a
-      href="https://vuejs.org/guide/scaling-up/tooling.html#ide-support"
-      target="_blank"
-      >Vue Docs Scaling up Guide</a
-    >.
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
-
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-</style>

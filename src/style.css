@@ -3,5 +3,9 @@
 @tailwind utilities;
 :root {
     --mainColor: #9071A7;
-    --subColor: #f6f6f6;
+    --subColor: #4a2d5e;
+    --thrColor: #f6f6f6;
+
+    --bg-1: #a197bc;
+    --bg-2: #8270b2;
 }

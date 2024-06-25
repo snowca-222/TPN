@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory, createWebHashHistory } from "vue-router";
-import Home from '@/components/home.vue'
 const router = createRouter({
     // history: createWebHistory('/TPN/'), // 這邊要把 vite.config.js 的 base 填入
     history: createWebHashHistory('/TPN/'), // 這邊要把 vite.config.js 的 base 填入
@@ -7,12 +6,12 @@ const router = createRouter({
         {
             path: '/',
             name: 'Home',
-            component: Home
+            component: () => import('@/components/Home.vue')
         },
         {
             path: '/user',
             name: 'User',
-            component: () => import('@/components/user.vue')
+            component: () => import('@/components/User.vue')
         }
     ]
 })
