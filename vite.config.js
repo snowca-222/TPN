@@ -7,10 +7,10 @@ export default defineConfig({
   base: '/TPN/',
   resolve: {
     alias: {
-      "@": "/src",
+      // "@": "/src",
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
       "@image": "/src/images"
       // 部署到github時打開
-      // '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   }
 })
