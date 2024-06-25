@@ -2,5 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 :root {
-
+    --mainColor: #9071A7;
+    --subColor: #f6f6f6;
 }
