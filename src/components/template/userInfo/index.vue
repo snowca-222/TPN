@@ -13,7 +13,9 @@
       </div>
       <div class="flex">
         <button class="w-1/2">Website</button>
-        <button class="w-1/2">View Profile</button>
+        <router-link :to="{ name: 'User' }">
+          <button class="w-1/2">View Profile</button>
+        </router-link>
       </div>
     </div>
   </div>
