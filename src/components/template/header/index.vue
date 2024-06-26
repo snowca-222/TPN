@@ -8,7 +8,9 @@ import siteLogo from "@image/logo/TPN_logo.png";
   >
     <div class="container m-auto">
       <div class="flex items-center justify-between px-2.5">
-        <img :src="siteLogo" alt="TPN_logo" class="w-40" />
+        <router-link :to="{ name: 'Home' }">
+          <img :src="siteLogo" alt="TPN_logo" class="w-40" />
+        </router-link>
         <LangSelect />
       </div>
     </div>
