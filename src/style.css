@@ -2,10 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 :root {
-    --mainColor: #9071A7;
-    --subColor: #4a2d5e;
-    --thrColor: #f6f6f6;
+    --mainColor: var(--color-11);
+    --subColor: var(--color-12);
+    --thrColor: var(--color-13);
+    --mainTxt: var(--color-14);
 
-    --bg-1: #a197bc;
-    --bg-2: #8270b2;
+    --color-1: #a197bc;
+    --color-2: #8270b2;
+    --color-3: #cab5ed;
+    --color-4: #edd0b5;
+    --color-5: #a6774b;
+    --color-6: #ECE6F5;
+    --color-7: #776b98;
+    --color-8: #ece9f8;
+    --color-9: #eab07a;
+    --color-10: #BE6F25;
+    --color-11: #9071A7;
+    --color-12: #4a2d5e;
+    --color-13: #f6f6f6;
+    --color-14: #666666;
+    --color-15: #D78383;
+    --color-16: #FF6565;
+    --color-17: #644BA6;
 }
