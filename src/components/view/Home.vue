@@ -2,10 +2,7 @@
 import { ref } from "vue";
 import Banner from "@/components/template/banner/index.vue";
 import UserInfoBox from "@/components/template/userInfo/index.vue";
-
-// defineProps({
-//   msg: String,
-// });
+import FilterBox from "@/components/template/filterBox/index.vue";
 </script>
 
 <template>
@@ -15,14 +12,7 @@ import UserInfoBox from "@/components/template/userInfo/index.vue";
       <div class="container mx-auto">
         <div class="flex">
           <div class="w-1/4 px-2.5">
-            <div class="mb-2.5 rounded-md bg-[--thrColor]">
-              <div class="text-center">Select country</div>
-              <div class="flex justify-center">
-                <button>USA</button>
-                <button>Taiwan</button>
-              </div>
-            </div>
-            <div class="rounded-md bg-[--thrColor]">項目</div>
+            <FilterBox />
           </div>
           <div class="w-3/4 px-2.5">
             <div class="flex flex-wrap rounded-md bg-[--thrColor]">
