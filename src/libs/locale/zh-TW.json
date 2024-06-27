@@ -1,3 +1,9 @@
 {
-    "button.search": "搜尋"
+  "button.clearFilter": "清除條件",
+  "button.collapse": "全部收合",
+  "button.expand": "全部展開",
+  "button.search": "搜尋",
+  "country.TW": "台灣",
+  "country.USA": "美國",
+  "filter.title": "選擇國家"
 }

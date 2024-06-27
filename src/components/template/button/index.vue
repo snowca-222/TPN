@@ -7,7 +7,7 @@ defineProps({
 <template>
   <button
     :class="[
-      'flex items-center px-2 py-1 shadow-md',
+      'flex items-center px-2 py-1 shadow-md hover:bg-[--color-17]',
       { 'rounded-full bg-[--color-7]': isDropDown === false },
       { 'rounded-t-2xl bg-[--color-17]': isDropDown === true },
     ]"

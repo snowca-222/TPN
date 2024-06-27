@@ -53,7 +53,7 @@ onMounted(() => {
       v-if="isDropdown"
       class="absolute w-full rounded-b-2xl bg-[--color-17] text-center"
     >
-      <li v-for="i in 1" class="m-3" :key="i">
+      <li v-for="i in 2" class="m-3" :key="i">
         <button
           @click="handleLangSet(i === 1 ? 'en-US' : 'zh-TW')"
           class="w-full rounded-full bg-white text-[--color-7] hover:bg-[--color-18] hover:text-white"
