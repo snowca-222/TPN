@@ -1,6 +1,6 @@
 <script setup></script>
 <template>
-  <div class="w-1/2 p-2.5">
+  <div class="w-1/3 p-2.5">
     <div
       class="rounded-md bg-[--color-1] p-2.5 transition-colors hover:bg-[--color-2]"
     >

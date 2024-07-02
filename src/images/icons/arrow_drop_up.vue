@@ -1,0 +1,16 @@
+<script setup>
+defineProps({
+  setColor: String,
+});
+</script>
+<template>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="24px"
+    viewBox="0 -960 960 960"
+    width="24px"
+    :fill="setColor"
+  >
+    <path d="m280-400 200-200 200 200H280Z" />
+  </svg>
+</template>

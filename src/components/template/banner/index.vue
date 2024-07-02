@@ -1,4 +1,4 @@
 <script setup></script>
 <template>
-  <div class="bg-purple-100"></div>
+  <div class="bg-[--color-1]">banner / slogan</div>
 </template>

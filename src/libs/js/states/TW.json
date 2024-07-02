@@ -1,0 +1,162 @@
+[
+  {
+    "en_name": "Keelung City",
+    "ch_name": "基隆市",
+    "city_code": "KLU"
+  },
+  {
+    "en_name": "New Taipei City",
+    "ch_name": "新北市",
+    "city_code": "TPH"
+  },
+  {
+    "en_name": "Taipei City",
+    "ch_name": "臺北市",
+    "city_code": "TPE"
+  },
+  {
+    "en_name": "Taoyuan City",
+    "ch_name": "桃園市",
+    "city_code": "TYC"
+  },
+  {
+    "en_name": "Hsinchu County",
+    "ch_name": "新竹縣",
+    "city_code": "HSH"
+  },
+  {
+    "en_name": "Hsinchu City",
+    "ch_name": "新竹市",
+    "city_code": "HSC"
+  },
+  {
+    "en_name": "Miaoli City",
+    "ch_name": "苗栗市",
+    "city_code": "MAC"
+  },
+  {
+    "en_name": "Miaoli County",
+    "ch_name": "苗栗縣",
+    "city_code": "MAL"
+  },
+  {
+    "en_name": "Taichung City",
+    "ch_name": "臺中市",
+    "city_code": "TXG"
+  },
+  {
+    "en_name": "Changhua County",
+    "ch_name": "彰化縣",
+    "city_code": "CWH"
+  },
+  {
+    "en_name": "Changhua City",
+    "ch_name": "彰化市",
+    "city_code": "CWS"
+  },
+  {
+    "en_name": "Nantou City",
+    "ch_name": "南投市",
+    "city_code": "NTC"
+  },
+  {
+    "en_name": "Nantou County",
+    "ch_name": "南投縣",
+    "city_code": "NTO"
+  },
+  {
+    "en_name": "Yunlin County",
+    "ch_name": "雲林縣",
+    "city_code": "YLH"
+  },
+  {
+    "en_name": "Chiayi County",
+    "ch_name": "嘉義縣",
+    "city_code": "CHY"
+  },
+  {
+    "en_name": "Chiayi City",
+    "ch_name": "嘉義市",
+    "city_code": "CYI"
+  },
+  {
+    "en_name": "Tainan City",
+    "ch_name": "臺南市",
+    "city_code": "TNN"
+  },
+  {
+    "en_name": "Kaohsiung City",
+    "ch_name": "高雄市",
+    "city_code": "KHH"
+  },
+  {
+    "en_name": "Pingtung County",
+    "ch_name": "屏東縣",
+    "city_code": "IUH"
+  },
+  {
+    "en_name": "Pingtung City",
+    "ch_name": "屏東市",
+    "city_code": "PTS"
+  },
+  {
+    "en_name": "Yilan County",
+    "ch_name": "宜蘭縣",
+    "city_code": "ILN"
+  },
+  {
+    "en_name": "Yilan City",
+    "ch_name": "宜蘭市",
+    "city_code": "ILC"
+  },
+  {
+    "en_name": "Hualien County",
+    "ch_name": "花蓮縣",
+    "city_code": "HWA"
+  },
+  {
+    "en_name": "Hualien  City",
+    "ch_name": "花蓮市",
+    "city_code": "HWC"
+  },
+  {
+    "en_name": "Taitung City",
+    "ch_name": "臺東市",
+    "city_code": "TTC"
+  },
+  {
+    "en_name": "Taitung County",
+    "ch_name": "臺東縣",
+    "city_code": "TTT"
+  },
+  {
+    "en_name": "Penghu County",
+    "ch_name": "澎湖縣",
+    "city_code": "PEH"
+  },
+  {
+    "en_name": "Green Island",
+    "ch_name": "綠島",
+    "city_code": "GNI"
+  },
+  {
+    "en_name": "Orchid Island",
+    "ch_name": "蘭嶼",
+    "city_code": "KYD"
+  },
+  {
+    "en_name": "Kinmen County",
+    "ch_name": "金門縣",
+    "city_code": "KMN"
+  },
+  {
+    "en_name": "Matsu",
+    "ch_name": "馬祖",
+    "city_code": "MZW"
+  },
+  {
+    "en_name": "Lienchiang County",
+    "ch_name": "連江縣",
+    "city_code": "LNN"
+  }
+]

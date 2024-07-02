@@ -1,0 +1,252 @@
+[
+  {
+    "ch_name": "阿拉斯加州",
+    "city_code": "AK",
+    "en_name": "Alaska"
+  },
+  {
+    "ch_name": "阿拉巴馬州",
+    "city_code": "AL",
+    "en_name": "Alabama"
+  },
+  {
+    "ch_name": "阿肯色州",
+    "city_code": "AR",
+    "en_name": "Arkansas"
+  },
+  {
+    "ch_name": "亞利桑那州",
+    "city_code": "AZ",
+    "en_name": "Arizona"
+  },
+  {
+    "ch_name": "加利福尼亞州",
+    "city_code": "CA",
+    "en_name": "California"
+  },
+  {
+    "ch_name": "科羅拉多州",
+    "city_code": "CO",
+    "en_name": "Colorado"
+  },
+  {
+    "ch_name": "康乃狄克州",
+    "city_code": "CT",
+    "en_name": "Connecticut"
+  },
+  {
+    "ch_name": "德拉瓦州",
+    "city_code": "DE",
+    "en_name": "Delaware"
+  },
+  {
+    "ch_name": "佛羅里達州",
+    "city_code": "FL",
+    "en_name": "Florida"
+  },
+  {
+    "ch_name": "喬治亞州",
+    "city_code": "GA",
+    "en_name": "Georgia"
+  },
+  {
+    "ch_name": "夏威夷州",
+    "city_code": "HI",
+    "en_name": "Hawaii"
+  },
+  {
+    "ch_name": "愛荷華州",
+    "city_code": "IA",
+    "en_name": "Idaho"
+  },
+  {
+    "ch_name": "愛達荷州",
+    "city_code": "ID",
+    "en_name": "Illinois"
+  },
+  {
+    "ch_name": "伊利諾州",
+    "city_code": "IL",
+    "en_name": "Indiana"
+  },
+  {
+    "ch_name": "印第安納州",
+    "city_code": "IN",
+    "en_name": "Iowa"
+  },
+  {
+    "ch_name": "堪薩斯州",
+    "city_code": "KS",
+    "en_name": "Kansas"
+  },
+  {
+    "ch_name": "肯塔基州",
+    "city_code": "KY",
+    "en_name": "Kentucky"
+  },
+  {
+    "ch_name": "路易斯安那州",
+    "city_code": "LA",
+    "en_name": "Louisiana"
+  },
+  {
+    "ch_name": "麻薩諸塞州",
+    "city_code": "MA",
+    "en_name": "Massachusetts"
+  },
+  {
+    "ch_name": "馬里蘭州",
+    "city_code": "MD",
+    "en_name": "Maryland"
+  },
+  {
+    "ch_name": "緬因州",
+    "city_code": "ME",
+    "en_name": "Maine"
+  },
+  {
+    "ch_name": "密西根州",
+    "city_code": "MI",
+    "en_name": "Michigan"
+  },
+  {
+    "ch_name": "明尼蘇達州",
+    "city_code": "MN",
+    "en_name": "Minnesota"
+  },
+  {
+    "ch_name": "密蘇里州",
+    "city_code": "MO",
+    "en_name": "Missouri"
+  },
+  {
+    "ch_name": "密西西比州",
+    "city_code": "MS",
+    "en_name": "Mississippi"
+  },
+  {
+    "ch_name": "蒙大拿州",
+    "city_code": "MT",
+    "en_name": "Montana"
+  },
+  {
+    "ch_name": "北卡羅來納州",
+    "city_code": "NC",
+    "en_name": "North Carolina"
+  },
+  {
+    "ch_name": "北達科他州",
+    "city_code": "ND",
+    "en_name": "North Dakota"
+  },
+  {
+    "ch_name": "內布拉斯加州",
+    "city_code": "NE",
+    "en_name": "Nebraska"
+  },
+  {
+    "ch_name": "新罕布夏州",
+    "city_code": "NH",
+    "en_name": "New Hampshire"
+  },
+  {
+    "ch_name": "紐澤西州",
+    "city_code": "NJ",
+    "en_name": "New Jersey"
+  },
+  {
+    "ch_name": "新墨西哥州",
+    "city_code": "NM",
+    "en_name": "New Mexico"
+  },
+  {
+    "ch_name": "內華達州",
+    "city_code": "NV",
+    "en_name": "Nevada"
+  },
+  {
+    "ch_name": "紐約州",
+    "city_code": "NY",
+    "en_name": "New York"
+  },
+  {
+    "ch_name": "俄亥俄州",
+    "city_code": "OH",
+    "en_name": "Ohio"
+  },
+  {
+    "ch_name": "奧克拉荷馬州",
+    "city_code": "OK",
+    "en_name": "Oklahoma"
+  },
+  {
+    "ch_name": "奧勒岡州",
+    "city_code": "OR",
+    "en_name": "Oregon"
+  },
+  {
+    "ch_name": "賓夕法尼亞州",
+    "city_code": "PA",
+    "en_name": "Pennsylvania"
+  },
+  {
+    "ch_name": "羅德島州",
+    "city_code": "RI",
+    "en_name": "Rhode Island"
+  },
+  {
+    "ch_name": "南卡羅來納州",
+    "city_code": "SC",
+    "en_name": "South Carolina"
+  },
+  {
+    "ch_name": "南達科他州",
+    "city_code": "SD",
+    "en_name": "South Dakota"
+  },
+  {
+    "ch_name": "田納西州",
+    "city_code": "TN",
+    "en_name": "Tennessee"
+  },
+  {
+    "ch_name": "德克薩斯州",
+    "city_code": "TX",
+    "en_name": "Texas"
+  },
+  {
+    "ch_name": "猶他州",
+    "city_code": "UT",
+    "en_name": "Utah"
+  },
+  {
+    "ch_name": "維吉尼亞州",
+    "city_code": "VA",
+    "en_name": "Virginia"
+  },
+  {
+    "ch_name": "佛蒙特州",
+    "city_code": "VT",
+    "en_name": "Vermont"
+  },
+  {
+    "ch_name": "華盛頓州",
+    "city_code": "WA",
+    "en_name": "Washington"
+  },
+  {
+    "ch_name": "威斯康辛州",
+    "city_code": "WI",
+    "en_name": "Wisconsin"
+  },
+  {
+    "ch_name": "西維吉尼亞州",
+    "city_code": "WV",
+    "en_name": "West Virginia"
+  },
+  {
+    "ch_name": "懷俄明州",
+    "city_code": "WY",
+    "en_name": "Wyoming"
+  }
+]
