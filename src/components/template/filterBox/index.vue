@@ -10,8 +10,7 @@ import arrow_down from "@image/icons/arrow_drop_down.vue";
 import arrow_up from "@image/icons/arrow_drop_up.vue";
 
 const isSelect = ref("USA");
-const isExpand = ref(false);
-const isStates = ref("AL");
+const isStates = ref("All");
 const countryLists = ref([
   {
     id: "USA",
