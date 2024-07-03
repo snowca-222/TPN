@@ -1,8 +1,126 @@
 <script setup>
-import { inject } from "vue";
+import { ref, inject } from "vue";
+import { filters } from "@/libs/js/filter/en-US.js";
 const handleFilterBox = inject("handleFilterBox");
+// 假設的用戶
+const userList = ref([
+  {
+    name: "AAA",
+    lists: [
+      {
+        title: "Sliding scale",
+        lists: [
+          {
+            name: "sliding scale",
+            hasService: true,
+          },
+        ],
+      },
+      {
+        title: "Services",
+        lists: [
+          {
+            name: "In-person visits",
+            hasService: false,
+          },
+          {
+            name: "Telehealth visit",
+            hasService: false,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: "BBB",
+    lists: [
+      {
+        title: "Sliding scale",
+        lists: [
+          {
+            name: "sliding scale",
+            hasService: false,
+          },
+        ],
+      },
+      {
+        title: "Services",
+        lists: [
+          {
+            name: "In-person visits",
+            hasService: true,
+          },
+          {
+            name: "Telehealth visit",
+            hasService: false,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: "CCC",
+    lists: [
+      {
+        title: "Sliding scale",
+        lists: [
+          {
+            name: "sliding scale",
+            hasService: true,
+          },
+        ],
+      },
+      {
+        title: "Services",
+        lists: [
+          {
+            name: "In-person visits",
+            hasService: true,
+          },
+          {
+            name: "Telehealth visit",
+            hasService: true,
+          },
+        ],
+      },
+    ],
+  },
+]);
+
+const filterResult = ref(userList.value);
+const filterCount = ref(0);
+
+const handleCount = (check) => {
+  check ? filterCount.value-- : filterCount.value++;
+};
+
 const handleSearch = () => {
-  console.log("search");
+  if (filterCount.value !== 0) {
+    let values = {};
+    filters.forEach((r) => {
+      r.lists.forEach((rr) => {
+        if (values[r.title] === undefined) {
+          values[r.title] = {};
+        }
+        values[r.title][rr.type] = rr.checked;
+      });
+    });
+
+    const result = userList.value.filter((r) => {
+      let f = true;
+      r.lists.forEach((rr) => {
+        rr.lists.forEach((rrr) => {
+          if (values[rr.title][rrr.name] !== rrr.hasService) {
+            f = false;
+          }
+        });
+      });
+      return f;
+    });
+    filterResult.value = result;
+  } else {
+    filterResult.value = userList.value;
+  }
 };
 const handleCleared = () => {
   console.log("reset");
@@ -19,7 +137,10 @@ const handleCleared = () => {
       >
         <div>
           <span class="text-2xl">{{ $t("filter.popup.title") }}</span>
-          <button class="px-5 text-[--color-20] hover:brightness-110">
+          <button
+            @click="handleCleared"
+            class="px-5 text-[--color-20] hover:brightness-110"
+          >
             {{ $t("button.clearFilter") }}
           </button>
         </div>
@@ -30,7 +151,44 @@ const handleCleared = () => {
           {{ $t("button.close") }}
         </button>
       </div>
-      <div class="h-[calc(73dvh)] overflow-y-auto bg-white px-5">lists</div>
+      <div class="h-[calc(73dvh)] overflow-y-auto bg-white px-5">
+        <div
+          v-for="filterList in filters"
+          :key="filterList.title"
+          class="[&:nth-child(2)]:bg-[#efefef]"
+        >
+          <div class="py-2.5 text-xl font-bold text-[--color-11]">
+            {{ filterList.title }}
+          </div>
+          <label v-for="list in filterList.lists" :key="list.name">
+            <input
+              type="checkbox"
+              v-model="list.checked"
+              @click="handleCount(list.checked)"
+            />
+            {{ list.name }}
+          </label>
+        </div>
+        <div>測試勾選數：{{ filterCount }}</div>
+        <div>
+          測試:
+          <div
+            v-for="user in filterResult"
+            :key="user.name"
+            class="my-2 border p-2"
+          >
+            <div>名: {{ user.name }}</div>
+            <div>
+              技:
+              <ul v-for="lists in user.lists" :key="lists.title">
+                <li v-for="list in lists.lists" :key="list.type">
+                  <div v-if="list.hasService">{{ list.name }}</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="flex justify-end rounded-b-lg bg-[--color-14] px-5 py-5">
         <button
           @click="handleSearch"
