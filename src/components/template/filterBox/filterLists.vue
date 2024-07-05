@@ -89,15 +89,15 @@ const userList = ref([
 
 const filterResult = ref(userList.value);
 const filterCount = ref(0);
-
+const setFilters = ref(filters); // 複製一組選單列，目的是為了即時顯示 checked 狀態
 const handleCount = (check) => {
-  check ? filterCount.value-- : filterCount.value++;
+  check ? filterCount.value++ : filterCount.value--;
 };
 
 const handleSearch = () => {
   if (filterCount.value !== 0) {
     let values = {};
-    filters.forEach((r) => {
+    setFilters.value.forEach((r) => {
       r.lists.forEach((rr) => {
         if (values[r.title] === undefined) {
           values[r.title] = {};
@@ -110,7 +110,10 @@ const handleSearch = () => {
       let f = true;
       r.lists.forEach((rr) => {
         rr.lists.forEach((rrr) => {
-          if (values[rr.title][rrr.name] !== rrr.hasService) {
+          if (
+            values[rr.title][rrr.name] &&
+            values[rr.title][rrr.name] !== rrr.hasService
+          ) {
             f = false;
           }
         });
@@ -122,8 +125,12 @@ const handleSearch = () => {
     filterResult.value = userList.value;
   }
 };
-const handleCleared = () => {
-  console.log("reset");
+const handleReset = () => {
+  setFilters.value.forEach((r) => {
+    r.lists.forEach((rr) => {
+      rr.checked = false;
+    });
+  });
 };
 </script>
 <template>
@@ -138,7 +145,7 @@ const handleCleared = () => {
         <div>
           <span class="text-2xl">{{ $t("filter.popup.title") }}</span>
           <button
-            @click="handleCleared"
+            @click="handleReset"
             class="px-5 text-[--color-20] hover:brightness-110"
           >
             {{ $t("button.clearFilter") }}
@@ -151,25 +158,45 @@ const handleCleared = () => {
           {{ $t("button.close") }}
         </button>
       </div>
-      <div class="h-[calc(73dvh)] overflow-y-auto bg-white px-5">
-        <div
-          v-for="filterList in filters"
-          :key="filterList.title"
-          class="[&:nth-child(2)]:bg-[#efefef]"
-        >
+      <div
+        class="h-[calc(73dvh)] overflow-y-auto bg-white px-5 [&>div:nth-child(even)]:bg-[#efefef]"
+      >
+        <div v-for="filterList in setFilters" :key="filterList.title">
           <div class="py-2.5 text-xl font-bold text-[--color-11]">
             {{ filterList.title }}
           </div>
-          <label v-for="list in filterList.lists" :key="list.name">
-            <input
-              type="checkbox"
-              v-model="list.checked"
-              @click="handleCount(list.checked)"
-            />
-            {{ list.name }}
-          </label>
+          <div class="flex flex-wrap">
+            <label
+              v-for="list in filterList.lists"
+              :key="list.name"
+              :class="[
+                'my-2 mr-2 flex cursor-pointer select-none items-center rounded-md border border-[--color-14] px-2 py-1 transition-colors',
+                { 'bg-[--color-17] text-white': list.checked },
+                {
+                  'bg-transparent text-[--color-14] hover:bg-[--color-6]':
+                    !list.checked,
+                },
+              ]"
+            >
+              <input
+                type="checkbox"
+                v-model="list.checked"
+                @change="handleCount(list.checked)"
+                class="hidden"
+              />
+              <div
+                :class="[
+                  'mr-1 aspect-[1/1] w-3 rounded-sm border transition-colors',
+                  {
+                    'border-transparent bg-[--color-18]': list.checked,
+                  },
+                  { 'border-[--color-21] bg-transparent': !list.checked },
+                ]"
+              ></div>
+              {{ list.name }}
+            </label>
+          </div>
         </div>
-        <div>測試勾選數：{{ filterCount }}</div>
         <div>
           測試:
           <div
