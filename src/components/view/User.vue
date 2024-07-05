@@ -1,18 +1,68 @@
 <script setup>
 import { ref } from "vue";
 import Button from "@/components/template/button/index.vue";
+import WorldIcon from "@image/icons/world.vue";
+import MailIcon from "@image/icons/mail.vue";
 
 const userDetail = ref({
   name: "Christine Juang, PhD, DBSM",
   pronouns: "she / her / hers",
+  service: "In-person visits",
   licensed: "Licensed psychologist",
   state: "Missouri and California",
   mail: "dr.christinejuang@gmail.com",
 });
 </script>
 <template>
-  <div class="bg-[--mainColor]">
+  <div>
     <div class="container mx-auto my-2">
+      <div class="flex flex-wrap justify-center">
+        <div class="flex w-4/12 items-center justify-center bg-red-300">
+          <div
+            class="flex aspect-[1/1] w-[380px] items-center justify-center rounded-xl bg-[--color-13] shadow-md"
+          >
+            <img
+              src="@image/icons/userIcon.png"
+              alt="noPhotoUser"
+              class="w-[300px] overflow-hidden rounded-full border-8 border-[--color-2] shadow-lg"
+            />
+          </div>
+        </div>
+        <div class="w-8/12 bg-green-300">
+          <h3 class="relative w-fit text-[--mainTxt]">
+            <span class="text-[40px] font-bold">{{ userDetail.name }}</span>
+            <div class="whitespace-nowrap text-right text-xl">
+              ({{ userDetail.pronouns }})
+            </div>
+          </h3>
+          <h4 class="text-2xl font-bold text-[--color-12]">
+            {{ userDetail.service }}
+          </h4>
+          <ul
+            class="text-[--color-2] [&>li>img]:w-4 [&>li>span]:ml-2 [&>li>span]:text-xl [&>li]:my-4 [&>li]:flex"
+          >
+            <li>
+              <MailIcon setColor="#8270b2" />
+              <span class="text-xl">{{ userDetail.mail }}</span>
+            </li>
+            <li>
+              <WorldIcon setColor="#8270b2" />
+              <span class="text-xl">{{ userDetail.mail }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- <div
+          class="flex aspect-[1/1] w-[380px] items-center justify-center rounded-xl bg-[--color-13] shadow-md"
+        >
+          <img
+            src="@image/icons/userIcon.png"
+            alt="noPhotoUser"
+            class="w-[300px] overflow-hidden rounded-full border-8 border-[--color-2] shadow-lg"
+          />
+        </div>
+        <div class="w-[660px] bg-green-500">XD</div> -->
+      </div>
       <div class="my-6 rounded-md bg-[--thrColor] p-10">
         <div class="mx-auto flex w-fit items-center p-2.5">
           <div class="px-20 py-2.5">
