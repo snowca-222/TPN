@@ -1,6 +1,6 @@
 export const filters = [
     {
-        title: "Sliding scale",
+        title: "Sliding Scale",
         lists: [
           {
             type: "sliding scale",

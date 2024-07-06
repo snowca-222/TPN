@@ -159,45 +159,109 @@ const handleReset = () => {
         </button>
       </div>
       <div
-        class="h-[calc(73dvh)] overflow-y-auto bg-white px-5 [&>div:nth-child(even)]:bg-[#efefef]"
+        class="h-[calc(73dvh)] overflow-y-auto bg-white [&>div:nth-child(even)]:bg-[#efefef]"
       >
-        <div v-for="filterList in setFilters" :key="filterList.title">
+        <div
+          v-for="filterList in setFilters"
+          :key="filterList.title"
+          class="px-5"
+        >
           <div class="py-2.5 text-xl font-bold text-[--color-11]">
             {{ filterList.title }}
           </div>
           <div class="flex flex-wrap">
-            <label
-              v-for="list in filterList.lists"
-              :key="list.name"
-              :class="[
-                'my-2 mr-2 flex cursor-pointer select-none items-center rounded-md border border-[--color-14] px-2 py-1 transition-colors',
-                { 'bg-[--color-17] text-white': list.checked },
-                {
-                  'bg-transparent text-[--color-14] hover:bg-[--color-6]':
-                    !list.checked,
-                },
-              ]"
+            <template
+              v-if="
+                filterList.title === 'Areas of Specialty' ||
+                filterList.title === 'Insurance'
+              "
             >
-              <input
-                type="checkbox"
-                v-model="list.checked"
-                @change="handleCount(list.checked)"
-                class="hidden"
-              />
-              <div
+              <div v-for="i in 4" :key="i" class="flex w-1/4 flex-col">
+                <div
+                  v-for="j in Math.ceil(filterList.lists.length / 4)"
+                  :key="(i - 1) * 12 + j - 1"
+                >
+                  <template
+                    v-if="(i - 1) * 12 + j - 1 < filterList.lists.length"
+                  >
+                    <label
+                      :class="[
+                        'my-2 mr-2 flex cursor-pointer select-none items-start rounded-md px-2 py-1 transition-colors',
+                        {
+                          'bg-[--color-17] text-white':
+                            filterList.lists[(i - 1) * 12 + j - 1].checked,
+                        },
+                        {
+                          'bg-transparent text-[--color-14] hover:bg-[--color-6]':
+                            !filterList.lists[(i - 1) * 12 + j - 1].checked,
+                        },
+                      ]"
+                    >
+                      <input
+                        type="checkbox"
+                        v-model="filterList.lists[(i - 1) * 12 + j - 1].checked"
+                        @change="
+                          handleCount(
+                            filterList.lists[(i - 1) * 12 + j - 1].checked,
+                          )
+                        "
+                        class="hidden"
+                      />
+                      <div
+                        :class="[
+                          'mr-1 aspect-[1/1] w-5 rounded-sm border transition-colors',
+                          {
+                            'border-transparent bg-[--color-18]':
+                              filterList.lists[(i - 1) * 12 + j - 1].checked,
+                          },
+                          {
+                            'border-[--color-21] bg-transparent':
+                              !filterList.lists[(i - 1) * 12 + j - 1].checked,
+                          },
+                        ]"
+                      ></div>
+                      <div class="w-fit">
+                        {{ filterList.lists[(i - 1) * 12 + j - 1].name }}
+                      </div>
+                    </label>
+                  </template>
+                </div>
+              </div>
+            </template>
+            <template v-else>
+              <label
+                v-for="list in filterList.lists"
+                :key="list.name"
                 :class="[
-                  'mr-1 aspect-[1/1] w-3 rounded-sm border transition-colors',
+                  'my-2 mr-4 flex cursor-pointer select-none items-center rounded-md border border-[--color-14] px-2 py-1 transition-colors',
+                  { 'bg-[--color-17] text-white': list.checked },
                   {
-                    'border-transparent bg-[--color-18]': list.checked,
+                    'bg-transparent text-[--color-14] hover:bg-[--color-6]':
+                      !list.checked,
                   },
-                  { 'border-[--color-21] bg-transparent': !list.checked },
                 ]"
-              ></div>
-              {{ list.name }}
-            </label>
+              >
+                <input
+                  type="checkbox"
+                  v-model="list.checked"
+                  @change="handleCount(list.checked)"
+                  class="hidden"
+                />
+                <div
+                  :class="[
+                    'mr-1 aspect-[1/1] w-5 rounded-sm border transition-colors',
+                    {
+                      'border-transparent bg-[--color-18]': list.checked,
+                    },
+                    { 'border-[--color-21] bg-transparent': !list.checked },
+                  ]"
+                ></div>
+                <div class="w-fit">{{ list.name }}</div>
+              </label>
+            </template>
           </div>
         </div>
-        <div>
+        <div class="hidden">
           測試:
           <div
             v-for="user in filterResult"
