@@ -106,12 +106,14 @@ provide("handleFilterBox", handleFilterBox);
     <div>
       <div class="mb-5 py-2.5 text-2xl text-[--color-12]">
         {{ $t("filter.title.state") }}
-        <div class="flex flex-wrap text-xl [&>div]:px-2 [&>div]:py-1.5">
-          <div>
+        <div
+          class="flex flex-wrap text-sm md:text-base [&>div]:px-2 [&>div]:py-1.5"
+        >
+          <div class="w-full md:w-2/12">
             <button
               @click="handleState('All')"
               :class="[
-                'rounded-md border border-[--color-11] px-5 py-2',
+                'w-full rounded-md border border-[--color-11] px-5 py-2',
                 { 'bg-[--color-12] text-white': isStates === 'All' },
                 { 'text-[--color-11]': !isStates },
               ]"
@@ -119,19 +121,22 @@ provide("handleFilterBox", handleFilterBox);
               All (0)
             </button>
           </div>
-          <div v-for="(state, idx) in States_USA" :key="state.city_code">
-            <button
-              v-if="idx < viewCounts"
-              @click="handleState(state.city_code)"
-              :class="[
-                'rounded-md border border-[--color-11] px-5 py-2',
-                { 'bg-[--color-12] text-white': isStates === state.city_code },
-                { 'text-[--color-11]': !isStates },
-              ]"
-            >
-              {{ state.en_name }} (0)
-            </button>
-          </div>
+          <template v-for="(state, idx) in States_USA" :key="state.city_code">
+            <div v-if="idx < viewCounts" class="w-1/2 md:w-2/12">
+              <button
+                @click="handleState(state.city_code)"
+                :class="[
+                  'w-full rounded-md border border-[--color-11] px-5 py-2',
+                  {
+                    'bg-[--color-12] text-white': isStates === state.city_code,
+                  },
+                  { 'text-[--color-11]': !isStates },
+                ]"
+              >
+                {{ state.en_name }} (0)
+              </button>
+            </div>
+          </template>
         </div>
         <div class="flex justify-end">
           <button
