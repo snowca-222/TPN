@@ -20,7 +20,7 @@ const showLangSelector = ref(false);
         ]"
       >
         <router-link :to="{ name: 'Home' }" @click="handleScrollTop('instant')">
-          <img :src="siteLogo" alt="TPN_logo" class="w-40" />
+          <img :src="siteLogo" alt="TPN_logo" class="w-28 md:w-40" />
         </router-link>
         <LangSelect v-if="showLangSelector" />
       </div>

@@ -104,8 +104,11 @@ provide("handleFilterBox", handleFilterBox);
       </div>
     </div>
     <div>
-      <div class="mb-5 py-2.5 text-2xl text-[--color-12]">
-        {{ $t("filter.title.state") }}
+      <div class="mb-5 py-2.5 text-[--color-12]">
+        <span class="px-2.5 text-xl md:text-2xl">{{
+          $t("filter.title.state")
+        }}</span>
+
         <div
           class="flex flex-wrap text-sm md:text-base [&>div]:px-2 [&>div]:py-1.5"
         >
@@ -155,14 +158,16 @@ provide("handleFilterBox", handleFilterBox);
         </div>
       </div>
     </div>
-    <div class="mb-5 flex py-2.5 text-2xl text-[--color-12]">
-      {{ $t("filter.title.psychologists.USA") }}
+    <div class="mb-5 flex py-2.5 text-[--color-12]">
+      <span class="px-2.5 text-xl md:text-2xl">{{
+        $t("filter.title.psychologists.USA")
+      }}</span>
       <button
         class="flex items-center rounded-md bg-[--color-11] px-5 py-1 text-xl text-white hover:brightness-110"
         @click="handleFilterBox"
       >
-        <img src="@image/icons/filter.svg" alt="filter icon" class="pr-3" />
-        <span class="">{{ $t("button.allFilter") }}</span>
+        <img src="@image/icons/filter.svg" alt="filter icon" />
+        <span class="hidden pl-3 sm:block">{{ $t("button.allFilter") }}</span>
       </button>
     </div>
     <FilterListsPanel v-if="isFilterBox" />
