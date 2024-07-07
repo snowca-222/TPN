@@ -86,7 +86,7 @@ const listBox_right = ref([
   <div>
     <div class="container mx-auto my-10">
       <div class="mb-10 flex flex-wrap justify-center">
-        <div class="flex w-4/12 items-center justify-center">
+        <div class="flex w-full items-center justify-center xl:w-4/12">
           <div
             class="flex aspect-[1/1] w-[380px] items-center justify-center rounded-xl bg-[--color-13] shadow-md"
           >
@@ -97,15 +97,17 @@ const listBox_right = ref([
             />
           </div>
         </div>
-        <div class="flex w-8/12 items-center p-10">
+        <div class="flex w-full items-center p-10 xl:w-8/12">
           <div>
             <h3 class="w-fit text-[--mainTxt]">
-              <span class="text-[40px] font-bold">{{ userDetail.name }}</span>
-              <div class="whitespace-nowrap text-right text-xl">
+              <span class="text-xl font-bold xl:text-[40px]">{{
+                userDetail.name
+              }}</span>
+              <div class="whitespace-nowrap text-right text-sm xl:text-xl">
                 ({{ userDetail.pronouns }})
               </div>
             </h3>
-            <h4 class="text-2xl font-bold text-[--color-12]">
+            <h4 class="text-base font-bold text-[--color-12] xl:text-2xl">
               {{ userDetail.service }}
             </h4>
             <ul class="text-[--color-2]">
@@ -116,11 +118,13 @@ const listBox_right = ref([
               >
                 <template v-if="i === 1">
                   <MailIcon setColor="#8270b2" />
-                  <span class="text-xl">{{ userDetail.mail }}</span>
+                  <span class="hidden text-xl md:block">{{
+                    userDetail.mail
+                  }}</span>
                 </template>
                 <template v-if="i === 2">
                   <WorldIcon setColor="#8270b2" />
-                  <span class="text-xl">
+                  <span class="hidden text-xl md:block">
                     <a :href="userDetail.website" target="_blank">Website</a>
                   </span></template
                 >
@@ -129,8 +133,8 @@ const listBox_right = ref([
           </div>
         </div>
       </div>
-      <div class="flex">
-        <div class="w-4/12 p-2.5">
+      <div class="flex flex-col md:flex-row">
+        <div class="w-full p-2.5 xl:w-4/12">
           <div class="rounded-md border border-[--color-22] bg-white p-2.5">
             <div
               v-for="list in listBox_left"
@@ -170,7 +174,7 @@ const listBox_right = ref([
             </div>
           </div>
         </div>
-        <div class="w-8/12 p-2.5">
+        <div class="w-full p-2.5 xl:w-8/12">
           <div
             v-for="list in listBox_right"
             :key="list.type"

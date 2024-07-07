@@ -1,5 +1,5 @@
 <script setup>
-import { ref, provide } from "vue";
+import { ref, provide, inject, onMounted } from "vue";
 import Button from "@/components/template/button/index.vue";
 import FilterListsPanel from "@/components/template/filterBox/filterLists.vue";
 // import searchIcon from "@image/icons/search.svg";
@@ -8,6 +8,8 @@ import flag_TW from "@image/flag/taiwan.png";
 import States_USA from "@/libs/js/states/USA.json";
 import arrow_down from "@image/icons/arrow_drop_down.vue";
 import arrow_up from "@image/icons/arrow_drop_up.vue";
+import { checkDevice } from "@/libs/js/fn.js";
+const deviceWidth = inject("deviceWidth");
 
 const isSelect = ref("USA");
 const isStates = ref("All");
@@ -30,7 +32,7 @@ const handleState = (setState) => {
   isStates.value = setState;
 };
 const viewState = ref(false);
-const viewCounts = ref(17);
+const viewCounts = ref(0);
 const handleExpand = () => {
   if (viewState.value) {
     viewState.value = false;
@@ -51,6 +53,16 @@ const handleFilterBox = () => {
     document.querySelector("body").style.overflow = "hidden";
   }
 };
+const handleSetCounts = () => {
+  if (deviceWidth.value < 768) {
+    viewCounts.value = 8;
+  } else {
+    viewCounts.value = 17;
+  }
+};
+onMounted(() => {
+  handleSetCounts();
+});
 provide("handleFilterBox", handleFilterBox);
 </script>
 <template>
@@ -63,22 +75,28 @@ provide("handleFilterBox", handleFilterBox);
             @click="handleCountry(list.id)"
             :key="list.id"
             :class="[
-              'relative w-[400px] rounded-full border border-[--color-11] px-2.5 py-3.5 text-[28px] transition-colors',
+              'relative rounded-full border border-[--color-11] transition-colors',
+              'w-40 px-2.5 py-1.5 text-xl',
+              'xl:w-[400px] xl:px-2.5 xl:py-3.5 xl:text-[28px]',
               { 'z-[2] bg-[--color-12] text-white': isSelect === list.id },
               {
                 'bg-white text-[--color-11] hover:bg-[--color-12] hover:text-white hover:brightness-125':
                   isSelect !== list.id,
               },
               {
-                'left-8': list.id === 'USA',
+                'left-4 xl:left-8': list.id === 'USA',
               },
               {
-                'right-8': list.id === 'TW',
+                'right-4 xl:right-8': list.id === 'TW',
               },
             ]"
           >
             <div class="flex items-center justify-center">
-              <img class="w-6" :src="list.flag" :alt="list.id" />
+              <img
+                class="hidden w-6 xl:block"
+                :src="list.flag"
+                :alt="list.id"
+              />
               <span class="mx-2">{{ $t(list.name) }}</span>
             </div>
           </button>
