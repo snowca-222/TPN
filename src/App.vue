@@ -13,6 +13,13 @@ const handleResize = () => {
     deviceWidth.value = window.innerWidth;
   };
 };
+const handleScroll = (e) => {
+  if (e.target.scrollTop > 0) {
+    handleShow.value = true;
+  } else {
+    handleShow.value = false;
+  }
+};
 
 onMounted(() => {
   checkDevice() ? (device.value = "Mobile") : (device.value = "PC");
@@ -20,10 +27,14 @@ onMounted(() => {
 });
 provide("device", device);
 provide("deviceWidth", deviceWidth);
-const handleShow = ref(true);
+const handleShow = ref(false);
 </script>
 <template>
-  <div class="flex min-h-dvh flex-col">
+  <div
+    id="main"
+    class="flex h-1 min-h-dvh flex-col overflow-auto"
+    @scroll="handleScroll($event)"
+  >
     <Header />
     <router-view class="flex-1" />
     <Footer />

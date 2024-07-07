@@ -3,6 +3,7 @@ import { ref } from "vue";
 import Button from "@/components/template/button/index.vue";
 import WorldIcon from "@image/icons/world.vue";
 import MailIcon from "@image/icons/mail.vue";
+import { handleScrollTop } from "@/libs/js/fn";
 
 const userDetail = ref({
   name: "Christine Juang, PhD, DBSM",
@@ -86,23 +87,26 @@ const listBox_right = ref([
   <div>
     <div class="container mx-auto my-10">
       <div class="mb-10 flex flex-wrap justify-center">
-        <div class="flex w-full items-center justify-center xl:w-4/12">
+        <div class="flex w-full items-center justify-center md:w-4/12">
           <div
-            class="flex aspect-[1/1] w-[380px] items-center justify-center rounded-xl bg-[--color-13] shadow-md"
+            class="flex aspect-[1/1] w-60 items-center justify-center rounded-xl bg-[--color-13] shadow-md sm:w-[380px]"
           >
             <img
               src="@image/icons/userIcon.png"
               alt="noPhotoUser"
-              class="w-[300px] overflow-hidden rounded-full border-8 border-[--color-2] shadow-lg"
+              class="w-48 overflow-hidden rounded-full border-8 border-[--color-2] shadow-lg sm:w-[300px]"
             />
           </div>
         </div>
-        <div class="flex w-full items-center p-10 xl:w-8/12">
+        <div
+          class="flex w-full items-center justify-center p-2.5 sm:p-10 md:w-8/12 md:justify-start"
+        >
           <div>
             <h3 class="w-fit text-[--mainTxt]">
-              <span class="text-xl font-bold xl:text-[40px]">{{
-                userDetail.name
-              }}</span>
+              <span
+                class="text-xl font-bold sm:text-2xl md:text-3xl xl:text-[40px]"
+                >{{ userDetail.name }}</span
+              >
               <div class="whitespace-nowrap text-right text-sm xl:text-xl">
                 ({{ userDetail.pronouns }})
               </div>
@@ -110,24 +114,48 @@ const listBox_right = ref([
             <h4 class="text-base font-bold text-[--color-12] xl:text-2xl">
               {{ userDetail.service }}
             </h4>
-            <ul class="text-[--color-2]">
+            <ul class="flex text-[--color-2] sm:flex-col">
               <li
                 v-for="i in 2"
                 :key="i"
-                class="my-4 flex items-center [&>img]:w-4 [&>span]:ml-2 [&>span]:text-xl"
+                :class="[
+                  'mt-4 flex w-1/2 items-center px-1',
+                  'sm:w-full sm:px-0',
+                ]"
               >
                 <template v-if="i === 1">
-                  <MailIcon setColor="#8270b2" />
-                  <span class="hidden text-xl md:block">{{
-                    userDetail.mail
-                  }}</span>
+                  <a
+                    :href="`mailto:${userDetail.mail}`"
+                    :class="[
+                      'flex w-full items-center justify-center rounded-full border-2 border-[--color-22] py-2 shadow-md',
+                      'sm:w-fit sm:justify-start sm:border-0 sm:py-0 sm:shadow-none',
+                    ]"
+                  >
+                    <MailIcon
+                      setColor="#8270b2"
+                      class="h-9 w-9 sm:h-5 sm:w-5"
+                    />
+                    <span class="ml-2 hidden text-xl sm:block">
+                      {{ userDetail.mail }}
+                    </span>
+                  </a>
                 </template>
                 <template v-if="i === 2">
-                  <WorldIcon setColor="#8270b2" />
-                  <span class="hidden text-xl md:block">
-                    <a :href="userDetail.website" target="_blank">Website</a>
-                  </span></template
-                >
+                  <a
+                    :href="userDetail.website"
+                    target="_blank"
+                    :class="[
+                      'flex w-full items-center justify-center rounded-full border-2 border-[--color-22] py-2 shadow-md',
+                      'sm:w-fit sm:justify-start sm:border-0 sm:py-0 sm:shadow-none',
+                    ]"
+                  >
+                    <WorldIcon
+                      setColor="#8270b2"
+                      class="h-9 w-9 sm:h-9 sm:w-5"
+                    />
+                    <span class="ml-2 hidden text-xl sm:block"> Website </span>
+                  </a>
+                </template>
               </li>
             </ul>
           </div>
@@ -141,7 +169,7 @@ const listBox_right = ref([
               :key="list.type"
               class="border-b border-b-[--color-22] p-3 last:border-b-0"
             >
-              <span class="text-2xl font-bold text-[--color-12]">{{
+              <span class="text-base font-bold text-[--color-12] sm:text-2xl">{{
                 list.title
               }}</span>
 
@@ -154,7 +182,7 @@ const listBox_right = ref([
               </ul>
               <template v-if="list.type === 'Licensure Info'">
                 <div v-for="item in userDetail.Licensure_Info" :key="item">
-                  <span class="text-xl font-bold text-[--color-2]">{{
+                  <span class="text-sm font-bold text-[--color-2] md:text-xl">{{
                     item.country
                   }}</span>
                   <ul class="list_style type_A">
@@ -180,7 +208,7 @@ const listBox_right = ref([
             :key="list.type"
             class="mb-6 rounded-md bg-[--color-23] p-6"
           >
-            <span class="text-2xl font-bold text-[--color-12]">{{
+            <span class="font-bold text-[--color-12] sm:text-2xl">{{
               list.title
             }}</span>
             <ul class="list_style type_B">
@@ -214,8 +242,12 @@ const listBox_right = ref([
         </div>
       </div>
 
-      <router-link :to="{ name: 'Home' }" class="mx-auto block w-fit">
-        <Button class="mx-auto my-20">
+      <router-link
+        :to="{ name: 'Home' }"
+        class="mx-auto block w-fit"
+        @click="handleScrollTop('instant')"
+      >
+        <Button class="mx-auto my-10">
           <template #btnIcon>
             <div
               class="ml-1 aspect-[1/1] w-4 rotate-45 border-b-4 border-l-4 border-[--color-7]"
@@ -241,9 +273,9 @@ const listBox_right = ref([
     }
   }
   li {
-    @apply relative flex items-center py-2 pl-4 text-xl;
+    @apply relative flex items-start py-2 pl-4 text-sm sm:text-xl;
     &::before {
-      @apply absolute left-0 h-1.5 w-1.5 rounded-full;
+      @apply absolute left-0 top-3.5 h-1.5 w-1.5 rounded-full sm:top-[18px];
     }
   }
 }
