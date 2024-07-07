@@ -166,17 +166,21 @@ const handleReset = () => {
           :key="filterList.title"
           class="px-5"
         >
-          <div class="py-2.5 text-xl font-bold text-[--color-11]">
+          <div class="py-2.5 font-bold text-[--color-11] xl:text-xl">
             {{ filterList.title }}
           </div>
-          <div class="flex flex-wrap">
+          <div class="flex flex-col flex-wrap md:flex-row">
             <template
               v-if="
                 filterList.title === 'Areas of Specialty' ||
                 filterList.title === 'Insurance'
               "
             >
-              <div v-for="i in 4" :key="i" class="flex w-1/4 flex-col">
+              <div
+                v-for="i in 4"
+                :key="i"
+                class="flex w-full flex-col md:w-1/2 xl:w-1/4"
+              >
                 <div
                   v-for="j in Math.ceil(filterList.lists.length / 4)"
                   :key="(i - 1) * 12 + j - 1"
@@ -186,7 +190,7 @@ const handleReset = () => {
                   >
                     <label
                       :class="[
-                        'my-2 mr-2 flex cursor-pointer select-none items-start rounded-md px-2 py-1 transition-colors',
+                        'my-2 mr-2 flex cursor-pointer select-none items-start rounded-md px-2 py-1 text-xs transition-colors md:text-sm xl:text-base',
                         {
                           'bg-[--color-17] text-white':
                             filterList.lists[(i - 1) * 12 + j - 1].checked,
@@ -233,7 +237,7 @@ const handleReset = () => {
                 v-for="list in filterList.lists"
                 :key="list.name"
                 :class="[
-                  'my-2 mr-4 flex cursor-pointer select-none items-center rounded-md border border-[--color-14] px-2 py-1 transition-colors',
+                  'my-2 mr-4 flex cursor-pointer select-none items-center rounded-md px-2 py-1 text-xs transition-colors md:text-sm xl:text-base',
                   { 'bg-[--color-17] text-white': list.checked },
                   {
                     'bg-transparent text-[--color-14] hover:bg-[--color-6]':
