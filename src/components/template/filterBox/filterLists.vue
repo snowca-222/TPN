@@ -6,9 +6,9 @@ const handleFilterBox = inject("handleFilterBox");
 const userList = ref([
   {
     name: "AAA",
-    lists: [
+    list: [
       {
-        title: "Sliding scale",
+        title: "Sliding Scale",
         lists: [
           {
             name: "sliding scale",
@@ -33,9 +33,9 @@ const userList = ref([
   },
   {
     name: "BBB",
-    lists: [
+    list: [
       {
-        title: "Sliding scale",
+        title: "Sliding Scale",
         lists: [
           {
             name: "sliding scale",
@@ -48,11 +48,11 @@ const userList = ref([
         lists: [
           {
             name: "In-person visits",
-            hasService: true,
+            hasService: false,
           },
           {
             name: "Telehealth visit",
-            hasService: false,
+            hasService: true,
           },
         ],
       },
@@ -60,9 +60,9 @@ const userList = ref([
   },
   {
     name: "CCC",
-    lists: [
+    list: [
       {
-        title: "Sliding scale",
+        title: "Sliding Scale",
         lists: [
           {
             name: "sliding scale",
@@ -93,8 +93,39 @@ const setFilters = ref(filters); // 複製一組選單列，目的是為了即�
 const handleCount = (check) => {
   check ? filterCount.value++ : filterCount.value--;
 };
-
+const handleClose = () => {
+  handleReset();
+  handleFilterBox();
+};
+const filterLists = ref([
+  {
+    title: "sliding scale",
+    lists: [
+      {
+        type: "sliding scale",
+        name: "Yes",
+        checked: false,
+      },
+    ],
+  },
+  {
+    title: "services",
+    lists: [
+      {
+        type: "In-person visits",
+        name: "In-person visits",
+        checked: false,
+      },
+      {
+        type: "Telehealth visit",
+        name: "Telehealth visit",
+        checked: false,
+      },
+    ],
+  },
+]);
 const handleSearch = () => {
+  // handleFilterBox();
   if (filterCount.value !== 0) {
     let values = {};
     setFilters.value.forEach((r) => {
@@ -108,7 +139,7 @@ const handleSearch = () => {
 
     const result = userList.value.filter((r) => {
       let f = true;
-      r.lists.forEach((rr) => {
+      r.list.forEach((rr) => {
         rr.lists.forEach((rrr) => {
           if (
             values[rr.title][rrr.name] &&
@@ -126,6 +157,7 @@ const handleSearch = () => {
   }
 };
 const handleReset = () => {
+  filterCount.value = 0;
   setFilters.value.forEach((r) => {
     r.lists.forEach((rr) => {
       rr.checked = false;
@@ -144,6 +176,7 @@ const handleReset = () => {
       >
         <div>
           <span class="text-2xl">{{ $t("filter.popup.title") }}</span>
+          ( selected: {{ filterCount }} )
           <button
             @click="handleReset"
             class="px-5 text-[--color-20] hover:brightness-110"
@@ -152,7 +185,7 @@ const handleReset = () => {
           </button>
         </div>
         <button
-          @click="handleFilterBox"
+          @click="handleClose"
           class="text-xl text-white/80 hover:text-white"
         >
           {{ $t("button.close") }}
@@ -213,7 +246,7 @@ const handleReset = () => {
                       />
                       <div
                         :class="[
-                          'mr-1 aspect-[1/1] w-5 rounded-sm border transition-colors',
+                          'mr-1 hidden aspect-[1/1] w-5 rounded-sm border transition-colors',
                           {
                             'border-transparent bg-[--color-18]':
                               filterList.lists[(i - 1) * 12 + j - 1].checked,
@@ -253,7 +286,7 @@ const handleReset = () => {
                 />
                 <div
                   :class="[
-                    'mr-1 aspect-[1/1] w-5 rounded-sm border transition-colors',
+                    'mr-1 hidden aspect-[1/1] w-5 rounded-sm border transition-colors',
                     {
                       'border-transparent bg-[--color-18]': list.checked,
                     },
@@ -275,7 +308,7 @@ const handleReset = () => {
             <div>名: {{ user.name }}</div>
             <div>
               技:
-              <ul v-for="lists in user.lists" :key="lists.title">
+              <ul v-for="lists in user.list" :key="lists.title">
                 <li v-for="list in lists.lists" :key="list.type">
                   <div v-if="list.hasService">{{ list.name }}</div>
                 </li>
