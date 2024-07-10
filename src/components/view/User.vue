@@ -107,7 +107,7 @@ const listBox_right = ref([
                 class="text-xl font-bold sm:text-2xl md:text-3xl xl:text-[40px]"
                 >{{ userDetail.name }}</span
               >
-              <div class="whitespace-nowrap text-right text-sm xl:text-xl">
+              <div class="whitespace-nowrap text-sm md:text-lg xl:text-xl">
                 ({{ userDetail.pronouns }})
               </div>
             </h3>
