@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
+import { ripple } from 'vue3-ripple'
 import router from '@/libs/js/router'
 import './style.css'
 import App from './App.vue'
@@ -17,4 +18,5 @@ const i18n = createI18n({
 
 const app = createApp(App);
 app.use(router).use(i18n)
+app.directive("ripple", ripple)
 app.mount('#app')

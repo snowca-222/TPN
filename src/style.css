@@ -31,5 +31,68 @@
     --color-21: #9e9e9e;
     --color-22: #d9d9d9;
     --color-23: #eee;
-
+    --color-24: #a573ca;
+    --color-25: #9658c2;
+    --color-26: #C98DF5;
+    --color-27: #BC72F2;
+    --color-28: #EAB07A;
+    --color-29: #E3964E;
+    --color-30: #EDD0B5;
+    --color-31: #EAB07A;
+    --color-32: #F4E0FD;
+    --color-33: #D1B8E5;
+    --color-34: #DBCFED;
+    --color-35: #D5C3F1;
+}
+.btn_purple{
+    background-image: linear-gradient(
+        to bottom,
+        var(--color-24) 50%,
+        var(--color-25) 50%
+    );
+}
+.btn_purple:hover{
+    background-image: linear-gradient(
+        to bottom,
+        var(--color-26) 50%,
+        var(--color-27) 50%
+    );
+}
+.btn_orange{
+    background-image: linear-gradient(
+        to bottom,
+        var(--color-28) 50%,
+        var(--color-29) 50%
+    );
+}
+.btn_orange:hover{
+    background-image: linear-gradient(
+        to bottom,
+        var(--color-30) 50%,
+        var(--color-31) 50%
+    );
+}
+.btn_light_purple{
+    background-image: linear-gradient(
+        to bottom,
+        var(--color-32) 50%,
+        var(--color-33) 50%
+    );
+    color: var(--color-7);
+}
+.btn_light_purple:hover{
+    background-image: linear-gradient(
+        to bottom,
+        var(--color-34) 50%,
+        var(--color-35) 50%
+    );
+    color: var(--color-7);
+}
+.btn_disabled{
+    background-image: linear-gradient(
+        to bottom,
+        var(--color-13) 50%,
+        var(--color-19) 50%
+    );
+    color: var(--color-21);
 }

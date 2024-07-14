@@ -34,7 +34,7 @@ defineProps({
         <template v-if="memberData.website">
           <a :href="memberData.website" target="_blank">
             <button
-              class="w-full rounded-md bg-[--color-6] py-2.5 text-sm text-[--color-7] hover:bg-[--color-3] hover:text-[--color-17]"
+              class="btn_light_purple w-full rounded-md py-2.5 text-sm text-[--color-7] hover:text-[--color-17]"
             >
               Website
             </button>
@@ -43,7 +43,8 @@ defineProps({
         <template v-else>
           <div class="w-full px-2.5">
             <button
-              class="w-full cursor-default rounded-md bg-[--color-22] py-2.5 text-sm text-[--color-21]"
+              class="btn_disabled w-full rounded-md py-2.5 text-sm text-[--color-21]"
+              disabled
             >
               Website
             </button>

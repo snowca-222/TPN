@@ -74,6 +74,7 @@ provide("handleFilterBox", handleFilterBox);
             v-for="list in countryLists"
             @click="handleCountry(list.id)"
             :key="list.id"
+            v-ripple
             :class="[
               'relative rounded-full border border-[--color-11] transition-colors',
               'w-40 px-2.5 py-1.5 text-xl',
@@ -115,6 +116,7 @@ provide("handleFilterBox", handleFilterBox);
           <div class="w-full md:w-2/12">
             <button
               @click="handleState('All')"
+              v-ripple
               :class="[
                 'w-full rounded-md border border-[--color-11] px-5 py-2',
                 { 'bg-[--color-12] text-white': isStates === 'All' },
@@ -128,6 +130,7 @@ provide("handleFilterBox", handleFilterBox);
             <div v-if="idx < viewCounts" class="w-1/2 md:w-2/12">
               <button
                 @click="handleState(state.city_code)"
+                v-ripple
                 :class="[
                   'w-full rounded-md border border-[--color-11] px-5 py-2',
                   {
@@ -144,7 +147,7 @@ provide("handleFilterBox", handleFilterBox);
         <div class="flex justify-end">
           <button
             @click="handleExpand"
-            class="flex items-center text-xl text-[--color-11]"
+            class="flex items-center text-xl text-[--color-11] hover:brightness-75"
           >
             <template v-if="viewState"
               >{{ $t("state.view.collapse") }}
@@ -163,7 +166,7 @@ provide("handleFilterBox", handleFilterBox);
         $t("filter.title.psychologists.USA")
       }}</span>
       <button
-        class="flex items-center rounded-md bg-[--color-11] px-5 py-1 text-xl text-white hover:brightness-110"
+        class="btn_purple flex items-center rounded-md px-5 py-1 text-xl text-white"
         @click="handleFilterBox"
       >
         <img src="@image/icons/filter.svg" alt="filter icon" />
