@@ -6,6 +6,7 @@
     --subColor: var(--color-12);
     --thrColor: var(--color-13);
     --mainTxt: var(--color-14);
+    --loadingGray: #ededed;
 
     --color-1: #a197bc;
     --color-2: #8270b2;
