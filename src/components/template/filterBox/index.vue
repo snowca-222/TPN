@@ -8,7 +8,6 @@ import flag_TW from "@image/flag/taiwan.png";
 import States_USA from "@/libs/js/states/USA.json";
 import arrow_down from "@image/icons/arrow_drop_down.vue";
 import arrow_up from "@image/icons/arrow_drop_up.vue";
-import { checkDevice } from "@/libs/js/fn.js";
 const deviceWidth = inject("deviceWidth");
 
 const isSelect = ref("USA");
@@ -79,7 +78,10 @@ provide("handleFilterBox", handleFilterBox);
               'relative rounded-full border border-[--color-11] transition-colors',
               'w-40 px-2.5 py-1.5 text-xl',
               'xl:w-[400px] xl:px-2.5 xl:py-3.5 xl:text-[28px]',
-              { 'z-[2] bg-[--color-12] text-white': isSelect === list.id },
+              {
+                'btn_dark_purple z-[2] bg-[--color-12] text-white':
+                  isSelect === list.id,
+              },
               {
                 'bg-white text-[--color-11] hover:bg-[--color-12] hover:text-white hover:brightness-125':
                   isSelect !== list.id,
@@ -119,7 +121,10 @@ provide("handleFilterBox", handleFilterBox);
               v-ripple
               :class="[
                 'w-full rounded-md border border-[--color-11] px-5 py-2',
-                { 'bg-[--color-12] text-white': isStates === 'All' },
+                {
+                  'btn_dark_purple bg-[--color-12] text-white':
+                    isStates === 'All',
+                },
                 { 'text-[--color-11]': !isStates },
               ]"
             >
@@ -134,7 +139,8 @@ provide("handleFilterBox", handleFilterBox);
                 :class="[
                   'w-full rounded-md border border-[--color-11] px-5 py-2',
                   {
-                    'bg-[--color-12] text-white': isStates === state.city_code,
+                    'btn_dark_purple bg-[--color-12] text-white':
+                      isStates === state.city_code,
                   },
                   { 'text-[--color-11]': !isStates },
                 ]"

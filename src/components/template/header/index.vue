@@ -6,7 +6,7 @@ import { handleScrollTop } from "@/libs/js/fn";
 const showLangSelector = ref(false);
 </script>
 <template>
-  <header class="flex h-[100px] border-b-4 border-[--subColor] bg-[--color-12]">
+  <header class="flex bg-[--color-12] py-2">
     <div class="container m-auto">
       <div
         :class="[

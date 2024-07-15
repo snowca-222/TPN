@@ -176,7 +176,6 @@ const handleReset = () => {
       >
         <div>
           <span class="text-2xl">{{ $t("filter.popup.title") }}</span>
-          ( selected: {{ filterCount }} )
           <button
             @click="handleReset"
             class="px-5 text-[--color-20] hover:brightness-110"
@@ -186,9 +185,17 @@ const handleReset = () => {
         </div>
         <button
           @click="handleClose"
-          class="text-xl text-white/80 hover:text-white"
+          class="flex items-center text-xl text-white/80 hover:text-white"
         >
-          {{ $t("button.close") }}
+          <div class="relative h-1">
+            <div
+              class="absolute right-0 top-0 h-0.5 w-5 rotate-45 bg-white/80"
+            ></div>
+            <div
+              class="absolute right-0 top-0 h-0.5 w-5 -rotate-45 bg-white/80"
+            ></div>
+          </div>
+          <div class="hidden pl-1 md:block">{{ $t("button.close") }}</div>
         </button>
       </div>
       <div
@@ -317,7 +324,11 @@ const handleReset = () => {
           </div>
         </div>
       </div>
-      <div class="flex justify-end rounded-b-lg bg-[--color-14] px-5 py-5">
+      <div
+        class="flex items-center justify-between rounded-b-lg bg-[--color-14] px-5 py-5"
+      >
+        <div class="text-white">( Selected: {{ filterCount }} )</div>
+
         <button
           @click="handleSearch"
           class="rounded-md border border-[--color-21] bg-[--color-11] px-10 py-1 text-xl text-white hover:brightness-110"
