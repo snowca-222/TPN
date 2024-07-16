@@ -10,6 +10,13 @@ defineProps({
       class="rounded-md bg-[--color-1] p-2.5 transition-colors hover:bg-[--color-2]"
     >
       <img
+        v-if="memberData.photoImg"
+        :src="memberData.photoImg"
+        :alt="memberData.memberName_en"
+        class="m-auto aspect-[1/1] w-[150px] rounded-full"
+      />
+      <img
+        v-else
         class="m-auto aspect-[1/1] w-[150px]"
         src="@image/icons/userIcon.png"
         alt="noPhotoUser"
@@ -18,16 +25,16 @@ defineProps({
         <div
           :class="[
             'mb-3 mt-5 h-10 text-center font-bold',
-            { 'text-base': memberData.name.length > 30 },
-            { 'text-xl': memberData.name.length <= 30 },
+            { 'text-base': memberData.memberName_en.length > 30 },
+            { 'text-xl': memberData.memberName_en.length <= 30 },
           ]"
         >
-          {{ memberData.name }}
+          {{ memberData.memberName_en }}
         </div>
         <ul class="m-auto mb-5 w-fit text-sm [&>li]:my-3">
-          <li>{{ memberData.license }}</li>
-          <li>{{ memberData.place }}</li>
-          <li>{{ memberData.email }}</li>
+          <li>{{ memberData.activeLists }}</li>
+          <li>{{ memberData.activeLicensed }}</li>
+          <li>{{ memberData.mail }}</li>
         </ul>
       </div>
       <div class="flex [&>a]:w-full [&>a]:px-2.5">

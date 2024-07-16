@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue";
 import UserInfoBox from "@/components/template/userBoxOutside/index.vue";
 import UserInfoBoxSkeleton from "@/components/template/userBoxOutside/index_skeleton.vue";
+import { memberLists } from "@/libs/js/api/memberLists.js";
 const userDatas = ref([
   {
     name: "Christine Juang, PhD, DBSM ",
@@ -50,12 +51,21 @@ function getMemberData() {
 
 onMounted(() => {
   // 模擬取得 api 資料
-  setTimeout(() => {
-    getMemberData().then((res) => {
-      memberDatas.value = res.value;
+  // setTimeout(() => {
+  //   getMemberData().then((res) => {
+  //     memberDatas.value = res.value;
+  //     isLoading.value = false;
+  //   });
+  // }, 2000);
+  memberLists()
+    .then((res) => {
+      console.log(res.data);
+      memberDatas.value = res.data;
       isLoading.value = false;
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  }, 2000);
 });
 </script>
 
