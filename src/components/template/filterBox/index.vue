@@ -9,8 +9,8 @@ import States_USA from "@/libs/js/states/USA.json";
 import arrow_down from "@image/icons/arrow_drop_down.vue";
 import arrow_up from "@image/icons/arrow_drop_up.vue";
 const deviceWidth = inject("deviceWidth");
+const countrySelect = inject("countrySelect");
 
-const isSelect = ref("USA");
 const isStates = ref("All");
 const countryLists = ref([
   {
@@ -25,7 +25,7 @@ const countryLists = ref([
   },
 ]);
 const handleCountry = (setCountry) => {
-  isSelect.value = setCountry;
+  countrySelect.value = setCountry;
 };
 const handleState = (setState) => {
   isStates.value = setState;
@@ -80,11 +80,11 @@ provide("handleFilterBox", handleFilterBox);
               'xl:w-[400px] xl:px-2.5 xl:py-3.5 xl:text-[28px]',
               {
                 'btn_dark_purple z-[2] bg-[--color-12] text-white':
-                  isSelect === list.id,
+                  countrySelect === list.id,
               },
               {
                 'bg-white text-[--color-11] hover:bg-[--color-12] hover:text-white hover:brightness-125':
-                  isSelect !== list.id,
+                  countrySelect !== list.id,
               },
               {
                 'left-4 xl:left-8': list.id === 'USA',

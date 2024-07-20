@@ -6,6 +6,9 @@ import ScrollTop from "@/components/template/scrollTop/index.vue";
 import { checkDevice } from "@/libs/js/fn.js";
 const device = ref("");
 const deviceWidth = ref(window.innerWidth);
+const memberDatas = ref(); // 從 api 取得的會員資料
+const memberSearchDatas = ref(); // 透過篩選過後得到的資料
+const countrySelect = ref("USA"); // 國家選擇
 
 // 檢視裝置寬度
 const handleResize = () => {
@@ -25,6 +28,10 @@ onMounted(() => {
   checkDevice() ? (device.value = "Mobile") : (device.value = "PC");
   handleResize();
 });
+provide("memberDatas", memberDatas);
+provide("memberSearchDatas", memberSearchDatas);
+
+provide("countrySelect", countrySelect);
 provide("device", device);
 provide("deviceWidth", deviceWidth);
 const handleShow = ref(false);

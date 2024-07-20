@@ -1,93 +1,10 @@
 <script setup>
-import { ref, inject } from "vue";
+import { ref, inject, onMounted } from "vue";
 import { filters } from "@/libs/js/filter/en-US.js";
 const handleFilterBox = inject("handleFilterBox");
-// 假設的用戶
-const userList = ref([
-  {
-    name: "AAA",
-    list: [
-      {
-        title: "Sliding Scale",
-        lists: [
-          {
-            name: "sliding scale",
-            hasService: true,
-          },
-        ],
-      },
-      {
-        title: "Services",
-        lists: [
-          {
-            name: "In-person visits",
-            hasService: false,
-          },
-          {
-            name: "Telehealth visit",
-            hasService: false,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    name: "BBB",
-    list: [
-      {
-        title: "Sliding Scale",
-        lists: [
-          {
-            name: "sliding scale",
-            hasService: false,
-          },
-        ],
-      },
-      {
-        title: "Services",
-        lists: [
-          {
-            name: "In-person visits",
-            hasService: false,
-          },
-          {
-            name: "Telehealth visit",
-            hasService: true,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    name: "CCC",
-    list: [
-      {
-        title: "Sliding Scale",
-        lists: [
-          {
-            name: "sliding scale",
-            hasService: true,
-          },
-        ],
-      },
-      {
-        title: "Services",
-        lists: [
-          {
-            name: "In-person visits",
-            hasService: true,
-          },
-          {
-            name: "Telehealth visit",
-            hasService: true,
-          },
-        ],
-      },
-    ],
-  },
-]);
+const memberDatas = inject("memberDatas"); // 利用原始資料進行搜尋
+const memberSearchDatas = inject("memberSearchDatas"); // 將搜尋結果回傳
 
-const filterResult = ref(userList.value);
 const filterCount = ref(0);
 const setFilters = ref(filters); // 複製一組選單列，目的是為了即時顯示 checked 狀態
 const handleCount = (check) => {
@@ -97,35 +14,9 @@ const handleClose = () => {
   handleReset();
   handleFilterBox();
 };
-const filterLists = ref([
-  {
-    title: "sliding scale",
-    lists: [
-      {
-        type: "sliding scale",
-        name: "Yes",
-        checked: false,
-      },
-    ],
-  },
-  {
-    title: "services",
-    lists: [
-      {
-        type: "In-person visits",
-        name: "In-person visits",
-        checked: false,
-      },
-      {
-        type: "Telehealth visit",
-        name: "Telehealth visit",
-        checked: false,
-      },
-    ],
-  },
-]);
+
 const handleSearch = () => {
-  // handleFilterBox();
+  handleFilterBox();
   if (filterCount.value !== 0) {
     let values = {};
     setFilters.value.forEach((r) => {
@@ -137,7 +28,8 @@ const handleSearch = () => {
       });
     });
 
-    const result = userList.value.filter((r) => {
+    const result = memberDatas.value.filter((r) => {
+      // console.log(r);
       let f = true;
       r.list.forEach((rr) => {
         rr.lists.forEach((rrr) => {
@@ -151,10 +43,19 @@ const handleSearch = () => {
       });
       return f;
     });
-    filterResult.value = result;
+    memberSearchDatas.value = result;
   } else {
-    filterResult.value = userList.value;
+    memberSearchDatas.value = memberDatas.value;
   }
+};
+const handleSetCounts = () => {
+  setFilters.value.forEach((r) => {
+    r.lists.forEach((rr) => {
+      if (rr.checked) {
+        filterCount.value++;
+      }
+    });
+  });
 };
 const handleReset = () => {
   filterCount.value = 0;
@@ -164,6 +65,9 @@ const handleReset = () => {
     });
   });
 };
+onMounted(() => {
+  handleSetCounts();
+});
 </script>
 <template>
   <div class="fixed left-0 top-0 z-[3] h-dvh w-full">
@@ -210,12 +114,7 @@ const handleReset = () => {
             {{ filterList.title }}
           </div>
           <div class="flex flex-col flex-wrap md:flex-row">
-            <template
-              v-if="
-                filterList.title === 'Areas of Specialty' ||
-                filterList.title === 'Insurance'
-              "
-            >
+            <template v-if="filterList.title === 'Areas of Specialty'">
               <div
                 v-for="i in 4"
                 :key="i"
@@ -272,6 +171,32 @@ const handleReset = () => {
                 </div>
               </div>
             </template>
+            <!-- <template v-else-if="filterList.title === 'Services'">
+              <label
+                v-for="list in filterList.lists"
+                :key="list.name"
+                :class="[
+                  'my-2 mr-4 flex cursor-pointer select-none items-center rounded-md px-2 py-1 text-xs transition-colors md:text-sm xl:text-base',
+                  { 'bg-[--color-17] text-white': list.checked },
+                  {
+                    'bg-transparent text-[--color-14] hover:bg-[--color-6]':
+                      !list.checked,
+                  },
+                ]"
+              >
+                <input type="checkbox" v-model="list.checked" class="hidden" />
+                <div
+                  :class="[
+                    'mr-1 hidden aspect-[1/1] w-5 rounded-sm border transition-colors',
+                    {
+                      'border-transparent bg-[--color-18]': list.checked,
+                    },
+                    { 'border-[--color-21] bg-transparent': !list.checked },
+                  ]"
+                ></div>
+                <div class="w-fit">{{ list.name }}</div>
+              </label>
+            </template> -->
             <template v-else>
               <label
                 v-for="list in filterList.lists"
@@ -303,24 +228,6 @@ const handleReset = () => {
                 <div class="w-fit">{{ list.name }}</div>
               </label>
             </template>
-          </div>
-        </div>
-        <div class="hidden">
-          測試:
-          <div
-            v-for="user in filterResult"
-            :key="user.name"
-            class="my-2 border p-2"
-          >
-            <div>名: {{ user.name }}</div>
-            <div>
-              技:
-              <ul v-for="lists in user.list" :key="lists.title">
-                <li v-for="list in lists.lists" :key="list.type">
-                  <div v-if="list.hasService">{{ list.name }}</div>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       </div>

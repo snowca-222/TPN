@@ -42,7 +42,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="relative">
+  <div class="relative z-10">
     <Button :dropDown="true" :isDropDown="isDropdown" @click="handleDropdown">
       <template #btnIcon>
         <img :src="langIcon" alt="" />

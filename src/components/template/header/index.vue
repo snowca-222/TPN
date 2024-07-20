@@ -3,7 +3,7 @@ import { ref } from "vue";
 import LangSelect from "@/components/template/language/index.vue";
 import siteLogo from "@image/logo/TPN_logo.png";
 import { handleScrollTop } from "@/libs/js/fn";
-const showLangSelector = ref(false);
+const showLangSelector = ref(true);
 </script>
 <template>
   <header class="flex bg-[--color-12] py-2">

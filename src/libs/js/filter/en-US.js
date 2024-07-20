@@ -12,15 +12,20 @@ export const filters = [
         title: "Services",
         lists: [
           {
-            type: "In-person visits",
-            name: "In-person visits",
+            type: "In-person visits only",
+            name: "In-person visits only",
             checked: false,
           },
           {
-            type: "Telehealth visit",
-            name: "Telehealth visit",
+            type: "Telehealth visit only",
+            name: "Telehealth visit only",
             checked: false,
           },
+          {
+            type: "Both In-person and telehealth visits",
+            name: "Both In-person and telehealth visits",
+            checked: false,
+          }
         ],
       },{
         title: "Areas of Specialty",
@@ -257,158 +262,163 @@ export const filters = [
           },
         ]
       },{
-        title: "Insurance",
+        title: "Take Insurance",
         lists: [
           {
-            type: "ACI Specialty Benefits",
-            name: "ACI Specialty Benefits",
+            type: "Insurance",
+            name: "Yes",
             checked: false,
           },
-          {
-            type: "Aetna",
-            name: "Aetna",
-            checked: false,
-          },
-          {
-            type: "All Kids",
-            name: "All Kids",
-            checked: false,
-          },
-          {
-            type: "American Behavior",
-            name: "American Behavior",
-            checked: false,
-          },
-          {
-            type: "Anthem | Elevance",
-            name: "Anthem | Elevance",
-            checked: false,
-          },
-          {
-            type: "Beacon Health Options | Carelon",
-            name: "Beacon Health Options | Carelon",
-            checked: false,
-          },
-          {
-            type: "BHS | Behavioral Health Systems",
-            name: "BHS | Behavioral Health Systems",
-            checked: false,
-          },
-          {
-            type: "Blue Cross",
-            name: "Blue Cross",
-            checked: false,
-          },
-          {
-            type: "Blue Shield",
-            name: "Blue Shield",
-            checked: false,
-          },
-          {
-            type: "BlueCross BlueShield",
-            name: "BlueCross BlueShield",
-            checked: false,
-          },
-          {
-            type: "CCN | Community Care Network",
-            name: "CCN | Community Care Network",
-            checked: false,
-          },
-          {
-            type: "CHAMPVA",
-            name: "CHAMPVA",
-            checked: false,
-          },
-          {
-            type: "Cigna and Evernorth",
-            name: "Cigna and Evernorth",
-            checked: false,
-          },
-          {
-            type: "ConPsych",
-            name: "ConPsych",
-            checked: false,
-          },
-          {
-            type: "ESI Employee Assistance Group",
-            name: "ESI Employee Assistance Group",
-            checked: false,
-          },
-          {
-            type: "Great-West Life",
-            name: "Great-West Life",
-            checked: false,
-          },
-          {
-            type: "Guardian",
-            name: "Guardian",
-            checked: false,
-          },
-          {
-            type: "HealthPlus",
-            name: "HealthPlus",
-            checked: false,
-          },
-          {
-            type: "Horizon Healthcare",
-            name: "Horizon Healthcare",
-            checked: false,
-          },
-          {
-            type: "Humana",
-            name: "Humana",
-            checked: false,
-          },
-          {
-            type: "Magellan",
-            name: "Magellan",
-            checked: false,
-          },
-          {
-            type: "Medicaid",
-            name: "Medicaid",
-            checked: false,
-          },
-          {
-            type: "Medicare",
-            name: "Medicare",
-            checked: false,
-          },
-          {
-            type: "New Directions | Lucet",
-            name: "New Directions | Lucet",
-            checked: false,
-          },
-          {
-            type: "Optum",
-            name: "Optum",
-            checked: false,
-          },
-          {
-            type: "PHCS Network",
-            name: "PHCS Network",
-            checked: false,
-          },
-          {
-            type: "PsychCare",
-            name: "PsychCare",
-            checked: false,
-          },
-          {
-            type: "TRICARE",
-            name: "TRICARE",
-            checked: false,
-          },
-          {
-            type: "UnitedHealthcare UHC | UBH",
-            name: "UnitedHealthcare UHC | UBH",
-            checked: false,
-          },
-          {
-            type: "VA Community Care Network (CCN)",
-            name: "VA Community Care Network (CCN)",
-            checked: false,
-          },
+          // {
+          //   type: "ACI Specialty Benefits",
+          //   name: "ACI Specialty Benefits",
+          //   checked: false,
+          // },
+          // {
+          //   type: "Aetna",
+          //   name: "Aetna",
+          //   checked: false,
+          // },
+          // {
+          //   type: "All Kids",
+          //   name: "All Kids",
+          //   checked: false,
+          // },
+          // {
+          //   type: "American Behavior",
+          //   name: "American Behavior",
+          //   checked: false,
+          // },
+          // {
+          //   type: "Anthem | Elevance",
+          //   name: "Anthem | Elevance",
+          //   checked: false,
+          // },
+          // {
+          //   type: "Beacon Health Options | Carelon",
+          //   name: "Beacon Health Options | Carelon",
+          //   checked: false,
+          // },
+          // {
+          //   type: "BHS | Behavioral Health Systems",
+          //   name: "BHS | Behavioral Health Systems",
+          //   checked: false,
+          // },
+          // {
+          //   type: "Blue Cross",
+          //   name: "Blue Cross",
+          //   checked: false,
+          // },
+          // {
+          //   type: "Blue Shield",
+          //   name: "Blue Shield",
+          //   checked: false,
+          // },
+          // {
+          //   type: "BlueCross BlueShield",
+          //   name: "BlueCross BlueShield",
+          //   checked: false,
+          // },
+          // {
+          //   type: "CCN | Community Care Network",
+          //   name: "CCN | Community Care Network",
+          //   checked: false,
+          // },
+          // {
+          //   type: "CHAMPVA",
+          //   name: "CHAMPVA",
+          //   checked: false,
+          // },
+          // {
+          //   type: "Cigna and Evernorth",
+          //   name: "Cigna and Evernorth",
+          //   checked: false,
+          // },
+          // {
+          //   type: "ConPsych",
+          //   name: "ConPsych",
+          //   checked: false,
+          // },
+          // {
+          //   type: "ESI Employee Assistance Group",
+          //   name: "ESI Employee Assistance Group",
+          //   checked: false,
+          // },
+          // {
+          //   type: "Great-West Life",
+          //   name: "Great-West Life",
+          //   checked: false,
+          // },
+          // {
+          //   type: "Guardian",
+          //   name: "Guardian",
+          //   checked: false,
+          // },
+          // {
+          //   type: "HealthPlus",
+          //   name: "HealthPlus",
+          //   checked: false,
+          // },
+          // {
+          //   type: "Horizon Healthcare",
+          //   name: "Horizon Healthcare",
+          //   checked: false,
+          // },
+          // {
+          //   type: "Humana",
+          //   name: "Humana",
+          //   checked: false,
+          // },
+          // {
+          //   type: "Magellan",
+          //   name: "Magellan",
+          //   checked: false,
+          // },
+          // {
+          //   type: "Medicaid",
+          //   name: "Medicaid",
+          //   checked: false,
+          // },
+          // {
+          //   type: "Medicare",
+          //   name: "Medicare",
+          //   checked: false,
+          // },
+          // {
+          //   type: "New Directions | Lucet",
+          //   name: "New Directions | Lucet",
+          //   checked: false,
+          // },
+          // {
+          //   type: "Optum",
+          //   name: "Optum",
+          //   checked: false,
+          // },
+          // {
+          //   type: "PHCS Network",
+          //   name: "PHCS Network",
+          //   checked: false,
+          // },
+          // {
+          //   type: "PsychCare",
+          //   name: "PsychCare",
+          //   checked: false,
+          // },
+          // {
+          //   type: "TRICARE",
+          //   name: "TRICARE",
+          //   checked: false,
+          // },
+          // {
+          //   type: "UnitedHealthcare UHC | UBH",
+          //   name: "UnitedHealthcare UHC | UBH",
+          //   checked: false,
+          // },
+          // {
+          //   type: "VA Community Care Network (CCN)",
+          //   name: "VA Community Care Network (CCN)",
+          //   checked: false,
+          // },
         ]
       },{
         title: "Populations Served",
