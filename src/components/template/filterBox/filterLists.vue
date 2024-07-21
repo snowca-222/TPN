@@ -10,6 +10,40 @@ const setFilters = ref(filters); // 複製一組選單列，目的是為了即�
 const handleCount = (check) => {
   check ? filterCount.value++ : filterCount.value--;
 };
+
+const ServiceCount = ref(0);
+const handleServiceCheck = (list) => {
+  if (list.checked) {
+    handleServiceFilter("allFalse");
+    list.checked = true;
+    ServiceCount.value++;
+    filterCount.value++;
+    if (ServiceCount.value > 1) {
+      ServiceCount.value--;
+      filterCount.value--;
+    }
+  } else {
+    ServiceCount.value = 0;
+    filterCount.value--;
+  }
+};
+const handleServiceFilter = (setEvent) => {
+  setFilters.value.filter((e) => {
+    if (e.title === "Services") {
+      e.lists.forEach((list) => {
+        if (setEvent === "allFalse") {
+          list.checked = false;
+        }
+        if (setEvent === "checkTrue") {
+          if (list.checked === true) {
+            ServiceCount.value = 1;
+          }
+        }
+      });
+    }
+  });
+};
+
 const handleClose = () => {
   handleReset();
   handleFilterBox();
@@ -59,6 +93,7 @@ const handleSetCounts = () => {
 };
 const handleReset = () => {
   filterCount.value = 0;
+  ServiceCount.value = 0;
   setFilters.value.forEach((r) => {
     r.lists.forEach((rr) => {
       rr.checked = false;
@@ -67,6 +102,7 @@ const handleReset = () => {
 };
 onMounted(() => {
   handleSetCounts();
+  handleServiceFilter("checkTrue");
 });
 </script>
 <template>
@@ -89,17 +125,17 @@ onMounted(() => {
         </div>
         <button
           @click="handleClose"
-          class="flex items-center text-xl text-white/80 hover:text-white"
+          class="flex items-center rounded-full bg-black/50 px-2.5 text-xl text-gray-300 hover:brightness-125"
         >
-          <div class="relative h-1">
+          <div class="hidden pr-5 md:block">{{ $t("button.close") }}</div>
+          <div class="relative h-1 w-5">
             <div
-              class="absolute right-0 top-0 h-0.5 w-5 rotate-45 bg-white/80"
+              class="absolute right-0 top-0 h-1 w-5 rotate-45 bg-gray-300"
             ></div>
             <div
-              class="absolute right-0 top-0 h-0.5 w-5 -rotate-45 bg-white/80"
+              class="absolute right-0 top-0 h-1 w-5 -rotate-45 bg-gray-300"
             ></div>
           </div>
-          <div class="hidden pl-1 md:block">{{ $t("button.close") }}</div>
         </button>
       </div>
       <div
@@ -171,7 +207,7 @@ onMounted(() => {
                 </div>
               </div>
             </template>
-            <!-- <template v-else-if="filterList.title === 'Services'">
+            <template v-else-if="filterList.title === 'Services'">
               <label
                 v-for="list in filterList.lists"
                 :key="list.name"
@@ -184,7 +220,12 @@ onMounted(() => {
                   },
                 ]"
               >
-                <input type="checkbox" v-model="list.checked" class="hidden" />
+                <input
+                  @change="handleServiceCheck(list)"
+                  type="checkbox"
+                  v-model="list.checked"
+                  class="hidden"
+                />
                 <div
                   :class="[
                     'mr-1 hidden aspect-[1/1] w-5 rounded-sm border transition-colors',
@@ -196,7 +237,7 @@ onMounted(() => {
                 ></div>
                 <div class="w-fit">{{ list.name }}</div>
               </label>
-            </template> -->
+            </template>
             <template v-else>
               <label
                 v-for="list in filterList.lists"

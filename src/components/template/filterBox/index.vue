@@ -167,10 +167,17 @@ provide("handleFilterBox", handleFilterBox);
         </div>
       </div>
     </div>
-    <div class="mb-5 flex py-2.5 text-[--color-12]">
-      <span class="px-2.5 text-xl md:text-2xl">{{
-        $t("filter.title.psychologists.USA")
-      }}</span>
+    <div
+      class="mb-5 flex justify-between px-2.5 py-2.5 text-[--color-12] md:px-0"
+    >
+      <span class="w-3/4 px-2.5 text-sm sm:text-xl md:w-auto lg:text-2xl">
+        <template v-if="countrySelect === 'USA'">
+          {{ $t("filter.title.psychologists.USA") }}
+        </template>
+        <template v-else-if="countrySelect === 'TW'">
+          {{ $t("filter.title.psychologists.TW") }}
+        </template>
+      </span>
       <button
         class="btn_purple flex items-center rounded-md px-5 py-1 text-xl text-white"
         @click="handleFilterBox"

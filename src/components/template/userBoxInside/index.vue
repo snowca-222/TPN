@@ -70,6 +70,10 @@ const listBox_right = ref([
     type: "Sliding Scale",
     title: "Sliding Scale",
   },
+  {
+    type: "Insurance",
+    title: "Insurance",
+  },
 ]);
 </script>
 <template>
@@ -230,6 +234,11 @@ const listBox_right = ref([
             <template v-if="list.type === 'Interstate compact'">
               <li v-for="item in memberData.interstate_compact" :key="item">
                 {{ item }}
+              </li>
+            </template>
+            <template v-if="list.type === 'Insurance'">
+              <li>
+                {{ memberData.insurance ? "Yes" : "No" }}
               </li>
             </template>
             <template v-if="list.type === 'Sliding Scale'">
