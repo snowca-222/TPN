@@ -115,7 +115,7 @@ provide("handleFilterBox", handleFilterBox);
         <div
           class="flex flex-wrap text-sm md:text-base [&>div]:px-2 [&>div]:py-1.5"
         >
-          <div class="w-full md:w-2/12">
+          <div class="w-full md:w-3/12 xl:w-2/12">
             <button
               @click="handleState('All')"
               v-ripple
@@ -132,7 +132,7 @@ provide("handleFilterBox", handleFilterBox);
             </button>
           </div>
           <template v-for="(state, idx) in States_USA" :key="state.city_code">
-            <div v-if="idx < viewCounts" class="w-1/2 md:w-2/12">
+            <div v-if="idx < viewCounts" class="w-1/2 md:w-3/12 xl:w-2/12">
               <button
                 @click="handleState(state.city_code)"
                 v-ripple
