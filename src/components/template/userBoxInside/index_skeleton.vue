@@ -1,47 +1,5 @@
 <script setup>
 import { ref } from "vue";
-import WorldIcon from "@image/icons/world.vue";
-import MailIcon from "@image/icons/mail.vue";
-const userDetail = ref({
-  name: "Christine Juang, PhD, DBSM",
-  pronouns: "she/ her/ hers",
-  service: "In-person visits only",
-  licensed: "Licensed psychologist",
-  state: "Missouri and California",
-  mail: "dr.christinejuang@gmail.com",
-  website: "https://psychtranslation.com/",
-  Address: "",
-  License_State: ["Missouri", "California", "Taiwan"],
-  Licensure_Info: [
-    {
-      country: "USA",
-      lists: [
-        "Licensed Psychologist",
-        "Licensed Clinical Social Work",
-        "Licensed Marriage and Family Therapist",
-        "Licensed Counselor",
-      ],
-    },
-    {
-      country: "Taiwan",
-      lists: ["Clinical Psychologist"],
-    },
-  ],
-  Language: ["English", "Mandarin"],
-  Areas_of_Specialty: [
-    "Family of origin",
-    "International students",
-    "Interpersonal relationships",
-    "Trauma or PTSD",
-  ],
-  Populations_Served: ["Adults", "Older Adults"],
-  Insurance: ["ACI Specialty", "Aetna"],
-  Interstate_compact: [
-    "Psychology Interjurisdictional Compact (PSYPACT).",
-    "Counseling Compact",
-  ],
-  Sliding_scale: ["Yes"],
-});
 
 const listBox_left = ref([
   {
@@ -85,72 +43,30 @@ const listBox_right = ref([
     <div class="mb-10 flex flex-wrap justify-center">
       <div class="flex w-full items-center justify-center md:w-4/12">
         <div
-          class="flex aspect-[1/1] w-60 items-center justify-center rounded-xl bg-[--color-13] shadow-md sm:w-[380px]"
+          class="skeleton_loading flex aspect-[1/1] w-60 items-center justify-center rounded-xl shadow-md sm:w-[380px]"
         >
           <img
             src="@image/icons/userIcon.png"
             alt="noPhotoUser"
             class="w-48 overflow-hidden rounded-full border-8 border-[--color-2] shadow-lg sm:w-[300px]"
           />
-          <!-- <img
-              :src="memberDetail.photoImg"
-              :alt="memberDetail.memberName_en"
-              class="w-48 overflow-hidden rounded-full border-8 border-[--color-2] shadow-lg sm:w-[300px]"
-            /> -->
         </div>
       </div>
       <div
         class="flex w-full items-center justify-center p-2.5 sm:p-10 md:w-8/12 md:justify-start"
       >
-        <div>
-          <h3 class="w-full text-[--mainTxt]">
-            <div
-              class="skeleton_loading h-6 text-xl font-bold sm:h-8 sm:text-2xl md:h-9 md:text-3xl xl:h-12 xl:text-[40px]"
-            ></div>
-            <div
-              class="skeleton_loading mt-2 h-5 text-xl font-bold sm:h-7 sm:text-2xl md:text-3xl xl:text-[40px]"
-            ></div>
+        <div class="w-full">
+          <h3 class="w-full">
+            <div class="skeleton_loading h-6 sm:h-8 md:h-9 xl:h-12"></div>
+            <div class="skeleton_loading mt-2 h-3 w-1/3 sm:h-5"></div>
           </h3>
-          <h4 class="text-base font-bold text-[--color-12] xl:text-2xl">
-            {{ userDetail.service }}
-          </h4>
-          <ul class="flex text-[--color-2] sm:flex-col">
+          <h4 class="skeleton_loading mt-2 h-7 w-1/2"></h4>
+          <ul class="flex sm:flex-col">
             <li
               v-for="i in 2"
               :key="i"
-              :class="[
-                'mt-4 flex w-1/2 items-center px-1',
-                'sm:w-full sm:px-0',
-              ]"
-            >
-              <template v-if="i === 1">
-                <a
-                  :href="`mailto:${userDetail.mail}`"
-                  :class="[
-                    'flex w-full items-center justify-center rounded-full border-2 border-[--color-22] py-2 shadow-md',
-                    'sm:w-fit sm:justify-start sm:border-0 sm:py-0 sm:shadow-none',
-                  ]"
-                >
-                  <MailIcon setColor="#8270b2" class="h-9 w-9 sm:h-5 sm:w-5" />
-                  <span class="ml-2 hidden text-xl sm:block">
-                    {{ userDetail.mail }}
-                  </span>
-                </a>
-              </template>
-              <template v-if="i === 2">
-                <a
-                  :href="userDetail.website"
-                  target="_blank"
-                  :class="[
-                    'flex w-full items-center justify-center rounded-full border-2 border-[--color-22] py-2 shadow-md',
-                    'sm:w-fit sm:justify-start sm:border-0 sm:py-0 sm:shadow-none',
-                  ]"
-                >
-                  <WorldIcon setColor="#8270b2" class="h-9 w-9 sm:h-9 sm:w-5" />
-                  <span class="ml-2 hidden text-xl sm:block"> Website </span>
-                </a>
-              </template>
-            </li>
+              :class="['skeleton_loading mt-4 h-5 w-1/2', 'sm:w-2/3']"
+            ></li>
           </ul>
         </div>
       </div>
@@ -159,102 +75,30 @@ const listBox_right = ref([
       <div class="w-full p-2.5 xl:w-4/12">
         <div class="rounded-md border border-[--color-22] bg-white p-2.5">
           <div
-            v-for="list in listBox_left"
-            :key="list.type"
+            v-for="i in 3"
+            :key="i"
             class="border-b border-b-[--color-22] p-3 last:border-b-0"
           >
-            <span class="text-base font-bold text-[--color-12] sm:text-2xl">{{
-              list.title
-            }}</span>
+            <div class="skeleton_loading h-8 w-1/2"></div>
 
-            <ul class="list_style type_A">
-              <template v-if="list.type === 'License State'">
-                <li v-for="item in userDetail.License_State" :key="item">
-                  {{ item }}
-                </li>
-              </template>
+            <ul class="">
+              <li
+                v-for="i in 3"
+                :key="i"
+                class="skeleton_loading mt-4 h-5"
+              ></li>
             </ul>
-            <template v-if="list.type === 'Licensure Info'">
-              <div v-for="item in userDetail.Licensure_Info" :key="item">
-                <span class="text-sm font-bold text-[--color-2] md:text-xl">{{
-                  item.country
-                }}</span>
-                <ul class="list_style type_A">
-                  <li v-for="list in item.lists" :key="list">
-                    {{ list }}
-                  </li>
-                </ul>
-              </div>
-            </template>
-            <template v-if="list.type === 'Language'">
-              <ul class="list_style type_A">
-                <li v-for="item in userDetail.Language" :key="item">
-                  {{ item }}
-                </li>
-              </ul>
-            </template>
           </div>
         </div>
       </div>
       <div class="w-full p-2.5 xl:w-8/12">
         <div
-          v-for="list in listBox_right"
-          :key="list.type"
-          class="mb-6 rounded-md bg-[--color-23] p-6"
-        >
-          <span class="font-bold text-[--color-12] sm:text-2xl">{{
-            list.title
-          }}</span>
-          <ul class="list_style type_B">
-            <template v-if="list.type === 'Areas of Specialty'">
-              <li v-for="item in userDetail.Areas_of_Specialty" :key="item">
-                {{ item }}
-              </li>
-            </template>
-            <template v-if="list.type === 'Populations Served'">
-              <li v-for="item in userDetail.Populations_Served" :key="item">
-                {{ item }}
-              </li>
-            </template>
-            <template v-if="list.type === 'Insurance'">
-              <li v-for="item in userDetail.Insurance" :key="item">
-                {{ item }}
-              </li>
-            </template>
-            <template v-if="list.type === 'Interstate compact'">
-              <li v-for="item in userDetail.Interstate_compact" :key="item">
-                {{ item }}
-              </li>
-            </template>
-            <template v-if="list.type === 'Sliding Scale'">
-              <li v-for="item in userDetail.Sliding_scale" :key="item">
-                {{ item }}
-              </li>
-            </template>
-          </ul>
-        </div>
+          v-for="i in 5"
+          :key="i"
+          class="skeleton_loading mb-6 rounded-md bg-[--color-23] p-6"
+        ></div>
       </div>
     </div>
   </div>
 </template>
-<style scoped lang="scss">
-.list_style {
-  @apply py-2;
-  &.type_A {
-    li {
-      @apply text-[--color-2] before:bg-[--color-2];
-    }
-  }
-  &.type_B {
-    li {
-      @apply text-[--color-12] before:bg-[--color-12];
-    }
-  }
-  li {
-    @apply relative flex items-start py-2 pl-4 text-sm sm:text-xl;
-    &::before {
-      @apply absolute left-0 top-3.5 h-1.5 w-1.5 rounded-full sm:top-[18px];
-    }
-  }
-}
-</style>
+<style scoped lang="scss"></style>

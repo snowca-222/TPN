@@ -12,7 +12,6 @@ export function handleScrollTop (getBehavior) {
 }
 
 export function memberSearch_place(country,cities,memberLists) {
-    console.log(country, cities)
     let filterLists = []
     if(memberLists){
         if(country === 'USA'){
