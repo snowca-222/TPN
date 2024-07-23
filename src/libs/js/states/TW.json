@@ -11,7 +11,7 @@
   },
   {
     "en_name": "Taipei City",
-    "ch_name": "臺北市",
+    "ch_name": "台北市",
     "city_code": "TPE"
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "en_name": "Taichung City",
-    "ch_name": "臺中市",
+    "ch_name": "台中市",
     "city_code": "TXG"
   },
   {
@@ -81,7 +81,7 @@
   },
   {
     "en_name": "Tainan City",
-    "ch_name": "臺南市",
+    "ch_name": "台南市",
     "city_code": "TNN"
   },
   {
@@ -121,12 +121,12 @@
   },
   {
     "en_name": "Taitung City",
-    "ch_name": "臺東市",
+    "ch_name": "台東市",
     "city_code": "TTC"
   },
   {
     "en_name": "Taitung County",
-    "ch_name": "臺東縣",
+    "ch_name": "台東縣",
     "city_code": "TTT"
   },
   {

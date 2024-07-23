@@ -3,6 +3,7 @@ import { ref, provide, inject, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import Button from "@/components/template/button/index.vue";
 import FilterListsPanel from "@/components/template/filterBox/filterLists.vue";
+import stateCounter from "@/components/template/filterBox/stateCounter.vue";
 import flag_USA from "@image/flag/united-states.png";
 import flag_TW from "@image/flag/taiwan.png";
 import States_USA from "@/libs/js/states/USA.json";
@@ -29,12 +30,15 @@ const countryLists = ref([
   },
 ]);
 const handleCountry = (setCountry) => {
-  countrySelect.value = setCountry;
-  // console.log(storeMemberDatas.value);
+  if (countrySelect.value !== setCountry) {
+    countrySelect.value = setCountry;
+    isStates.value = "All";
+  }
 };
 const handleState = (setState) => {
   isStates.value = setState;
 };
+
 const viewState = ref(false);
 const viewCounts = ref(0);
 const handleExpand = () => {
@@ -161,8 +165,7 @@ provide("handleFilterBox", handleFilterBox);
                     i18n.locale.value === "en-US"
                       ? state.en_name
                       : state.ch_name
-                  }}
-                  (0)
+                  }}<stateCounter :state="state" />
                 </button>
               </div>
             </template>
@@ -187,8 +190,7 @@ provide("handleFilterBox", handleFilterBox);
                     i18n.locale.value === "en-US"
                       ? state.en_name
                       : state.ch_name
-                  }}
-                  (0)
+                  }}<stateCounter :state="state" />
                 </button>
               </div>
             </template>
