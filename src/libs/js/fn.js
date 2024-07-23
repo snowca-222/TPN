@@ -18,7 +18,6 @@ export function memberSearch_place(country,cities,memberLists) {
             memberLists.filter(e => {
                 if(e.activeInUSA){
                     filterLists.push(e)
-                    
                 }
             }
             )

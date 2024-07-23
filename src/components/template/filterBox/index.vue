@@ -37,6 +37,7 @@ const handleCountry = (setCountry) => {
 };
 const handleState = (setState) => {
   isStates.value = setState;
+  console.log(setState);
 };
 
 const viewState = ref(false);
@@ -149,24 +150,7 @@ provide("handleFilterBox", handleFilterBox);
           <template v-if="countrySelect === 'USA'">
             <template v-for="(state, idx) in States_USA" :key="state.city_code">
               <div v-if="idx < viewCounts" class="w-1/2 md:w-3/12 xl:w-2/12">
-                <button
-                  @click="handleState(state.city_code)"
-                  v-ripple
-                  :class="[
-                    'w-full rounded-md border border-[--color-11] px-5 py-2',
-                    {
-                      'btn_dark_purple bg-[--color-12] text-white':
-                        isStates === state.city_code,
-                    },
-                    { 'text-[--color-11]': !isStates },
-                  ]"
-                >
-                  {{
-                    i18n.locale.value === "en-US"
-                      ? state.en_name
-                      : state.ch_name
-                  }}<stateCounter :state="state" />
-                </button>
+                <stateCounter :state="state" />
               </div>
             </template>
           </template>
@@ -174,24 +158,7 @@ provide("handleFilterBox", handleFilterBox);
           <template v-else>
             <template v-for="(state, idx) in States_TW" :key="state.city_code">
               <div v-if="idx < viewCounts" class="w-1/2 md:w-3/12 xl:w-2/12">
-                <button
-                  @click="handleState(state.city_code)"
-                  v-ripple
-                  :class="[
-                    'w-full rounded-md border border-[--color-11] px-5 py-2',
-                    {
-                      'btn_dark_purple bg-[--color-12] text-white':
-                        isStates === state.city_code,
-                    },
-                    { 'text-[--color-11]': !isStates },
-                  ]"
-                >
-                  {{
-                    i18n.locale.value === "en-US"
-                      ? state.en_name
-                      : state.ch_name
-                  }}<stateCounter :state="state" />
-                </button>
+                <stateCounter :state="state" />
               </div>
             </template>
           </template>
