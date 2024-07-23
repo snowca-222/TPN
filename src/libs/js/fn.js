@@ -10,3 +10,27 @@ export function handleScrollTop (getBehavior) {
         behavior: getBehavior,
     });
 }
+
+export function memberSearch_place(country,cities,memberLists) {
+    console.log(country, cities)
+    let filterLists = []
+    if(memberLists){
+        if(country === 'USA'){
+            memberLists.filter(e => {
+                if(e.activeInUSA){
+                    filterLists.push(e)
+                    
+                }
+            }
+            )
+        }
+        if(country === 'TW'){
+            memberLists.filter(e =>{
+                if(e.licensureTaiwan){
+                    filterLists.push(e)
+                }
+            })
+        }
+    }
+    return filterLists
+}

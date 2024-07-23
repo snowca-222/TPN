@@ -1,17 +1,21 @@
 <script setup>
 import { ref, provide, inject, onMounted } from "vue";
+import { useI18n } from "vue-i18n";
 import Button from "@/components/template/button/index.vue";
 import FilterListsPanel from "@/components/template/filterBox/filterLists.vue";
-// import searchIcon from "@image/icons/search.svg";
 import flag_USA from "@image/flag/united-states.png";
 import flag_TW from "@image/flag/taiwan.png";
 import States_USA from "@/libs/js/states/USA.json";
+import States_TW from "@/libs/js/states/TW.json";
 import arrow_down from "@image/icons/arrow_drop_down.vue";
 import arrow_up from "@image/icons/arrow_drop_up.vue";
+
+const i18n = useI18n();
 const deviceWidth = inject("deviceWidth");
 const countrySelect = inject("countrySelect");
+const isStates = inject("isStates");
+const memberSearchDatas = inject("memberSearchDatas");
 
-const isStates = ref("All");
 const countryLists = ref([
   {
     id: "USA",
@@ -26,6 +30,7 @@ const countryLists = ref([
 ]);
 const handleCountry = (setCountry) => {
   countrySelect.value = setCountry;
+  // console.log(storeMemberDatas.value);
 };
 const handleState = (setState) => {
   isStates.value = setState;
@@ -128,26 +133,65 @@ provide("handleFilterBox", handleFilterBox);
                 { 'text-[--color-11]': !isStates },
               ]"
             >
-              All (0)
+              All (
+              {{
+                countrySelect === "USA"
+                  ? memberSearchDatas.USA.length
+                  : memberSearchDatas.TW.length
+              }}
+              )
             </button>
           </div>
-          <template v-for="(state, idx) in States_USA" :key="state.city_code">
-            <div v-if="idx < viewCounts" class="w-1/2 md:w-3/12 xl:w-2/12">
-              <button
-                @click="handleState(state.city_code)"
-                v-ripple
-                :class="[
-                  'w-full rounded-md border border-[--color-11] px-5 py-2',
-                  {
-                    'btn_dark_purple bg-[--color-12] text-white':
-                      isStates === state.city_code,
-                  },
-                  { 'text-[--color-11]': !isStates },
-                ]"
-              >
-                {{ state.en_name }} (0)
-              </button>
-            </div>
+          <template v-if="countrySelect === 'USA'">
+            <template v-for="(state, idx) in States_USA" :key="state.city_code">
+              <div v-if="idx < viewCounts" class="w-1/2 md:w-3/12 xl:w-2/12">
+                <button
+                  @click="handleState(state.city_code)"
+                  v-ripple
+                  :class="[
+                    'w-full rounded-md border border-[--color-11] px-5 py-2',
+                    {
+                      'btn_dark_purple bg-[--color-12] text-white':
+                        isStates === state.city_code,
+                    },
+                    { 'text-[--color-11]': !isStates },
+                  ]"
+                >
+                  {{
+                    i18n.locale.value === "en-US"
+                      ? state.en_name
+                      : state.ch_name
+                  }}
+                  (0)
+                </button>
+              </div>
+            </template>
+          </template>
+
+          <template v-else>
+            <template v-for="(state, idx) in States_TW" :key="state.city_code">
+              <div v-if="idx < viewCounts" class="w-1/2 md:w-3/12 xl:w-2/12">
+                <button
+                  @click="handleState(state.city_code)"
+                  v-ripple
+                  :class="[
+                    'w-full rounded-md border border-[--color-11] px-5 py-2',
+                    {
+                      'btn_dark_purple bg-[--color-12] text-white':
+                        isStates === state.city_code,
+                    },
+                    { 'text-[--color-11]': !isStates },
+                  ]"
+                >
+                  {{
+                    i18n.locale.value === "en-US"
+                      ? state.en_name
+                      : state.ch_name
+                  }}
+                  (0)
+                </button>
+              </div>
+            </template>
           </template>
         </div>
         <div class="flex justify-end">

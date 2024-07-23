@@ -7,7 +7,7 @@ import { handleScrollTop } from "@/libs/js/fn";
 import { memberLists } from "@/libs/js/api/memberLists.js";
 import UserDetailBox from "@/components/template/userBoxInside/index.vue";
 import UserDetailBoxSkeleton from "@/components/template/userBoxInside/index_skeleton.vue";
-const memberSearchDatas = inject("memberSearchDatas");
+const memberDatas = inject("memberDatas");
 
 const route = useRoute();
 const isLoading = ref(true);
@@ -15,9 +15,9 @@ const isLoading = ref(true);
 const keyID = Number(route.query.member);
 const memberDetail = ref();
 onMounted(() => {
-  if (memberSearchDatas.value) {
+  if (memberDatas.value) {
     // 用戶是從上層進入時
-    memberSearchDatas.value.filter((e) => {
+    memberDatas.value.filter((e) => {
       isLoading.value = false;
       if (e.keyID === keyID) {
         memberDetail.value = e;

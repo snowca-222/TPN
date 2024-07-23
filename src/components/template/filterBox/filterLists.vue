@@ -1,9 +1,13 @@
 <script setup>
 import { ref, inject, onMounted } from "vue";
 import { filters } from "@/libs/js/filter/en-US.js";
+import { memberSearch_place } from "@/libs/js/fn";
+
 const handleFilterBox = inject("handleFilterBox");
 const memberDatas = inject("memberDatas"); // 利用原始資料進行搜尋
-const memberSearchDatas = inject("memberSearchDatas"); // 將搜尋結果回傳
+const memberSearchDatas = inject("memberSearchDatas");
+const countrySelect = inject("countrySelect");
+const isStates = inject("isStates");
 
 const filterCount = ref(0);
 const setFilters = ref(filters); // 複製一組選單列，目的是為了即時顯示 checked 狀態
@@ -77,9 +81,27 @@ const handleSearch = () => {
       });
       return f;
     });
-    memberSearchDatas.value = result;
+    memberSearchDatas.value.USA = memberSearch_place(
+      "USA",
+      isStates.value,
+      result,
+    );
+    memberSearchDatas.value.TW = memberSearch_place(
+      "TW",
+      isStates.value,
+      result,
+    );
   } else {
-    memberSearchDatas.value = memberDatas.value;
+    memberSearchDatas.value.USA = memberSearch_place(
+      "USA",
+      isStates.value,
+      memberDatas.value,
+    );
+    memberSearchDatas.value.TW = memberSearch_place(
+      "TW",
+      isStates.value,
+      memberDatas.value,
+    );
   }
 };
 const handleSetCounts = () => {

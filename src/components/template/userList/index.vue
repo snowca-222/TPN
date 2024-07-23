@@ -3,19 +3,31 @@ import { ref, onMounted, inject } from "vue";
 import UserInfoBox from "@/components/template/userBoxOutside/index.vue";
 import UserInfoBoxSkeleton from "@/components/template/userBoxOutside/index_skeleton.vue";
 import { memberLists } from "@/libs/js/api/memberLists.js";
+import { memberSearch_place } from "@/libs/js/fn";
+import NotFound from "@/components/template/userList/notFound.vue";
 
 const isLoading = ref(true);
 const memberDatas = inject("memberDatas");
 const memberSearchDatas = inject("memberSearchDatas");
 const countrySelect = inject("countrySelect");
+const isStates = inject("isStates");
 
 onMounted(() => {
-  if (!memberSearchDatas.value) {
+  if (!memberDatas.value) {
     memberLists()
       .then((res) => {
         // console.log(res.data);
         memberDatas.value = res.data; // api 接收
-        memberSearchDatas.value = memberDatas.value; // 複製一份
+        memberSearchDatas.value.USA = memberSearch_place(
+          "USA",
+          isStates.value,
+          memberDatas.value,
+        );
+        memberSearchDatas.value.TW = memberSearch_place(
+          "TW",
+          isStates.value,
+          memberDatas.value,
+        );
         isLoading.value = false;
       })
       .catch((err) => {
@@ -33,28 +45,26 @@ onMounted(() => {
       <UserInfoBoxSkeleton v-for="i in 3" :key="i" />
     </template>
     <template v-else>
-      <template v-for="memberData in memberSearchDatas" :key="memberData.name">
-        <template v-if="countrySelect === 'USA' && memberData.activeInUSA">
-          <UserInfoBox :memberData="memberData" />
+      <template v-if="countrySelect === 'USA'">
+        <template v-if="memberSearchDatas.USA.length > 0">
+          <UserInfoBox
+            v-for="memberData in memberSearchDatas.USA"
+            :key="memberData.name"
+            :memberData="memberData"
+          />
         </template>
-
-        <template
-          v-else-if="countrySelect === 'TW' && memberData.licensureTaiwan"
-        >
-          <UserInfoBox :memberData="memberData" />
-        </template>
+        <NotFound v-else />
       </template>
-      <!-- <div v-else class="w-full px-2.5 py-5">
-        <img
-          src="@image/icons/nodata.svg"
-          alt="nodata"
-          class="mx-auto w-60"
-        />
-        <div class="text-center text-2xl font-bold">Result Not Found</div>
-        <p class="py-5 text-center text-gray-500">
-          Oops...please try choosing a different filter setting.
-        </p>
-      </div> -->
+      <template v-else-if="countrySelect === 'TW'">
+        <template v-if="memberSearchDatas.TW.length > 0">
+          <UserInfoBox
+            v-for="memberData in memberSearchDatas.TW"
+            :key="memberData.name"
+            :memberData="memberData"
+          />
+        </template>
+        <NotFound v-else />
+      </template>
     </template>
   </div>
 </template>
