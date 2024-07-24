@@ -55,6 +55,7 @@ const handleClose = () => {
 
 const handleSearch = () => {
   handleFilterBox();
+  isStates.value = "All";
   if (filterCount.value !== 0) {
     let values = {};
     setFilters.value.forEach((r) => {
@@ -81,25 +82,17 @@ const handleSearch = () => {
       });
       return f;
     });
-    memberSearchDatas.value.USA = memberSearch_place(
-      "USA",
-      isStates.value,
-      result,
-    );
-    memberSearchDatas.value.TW = memberSearch_place(
-      "TW",
-      isStates.value,
-      result,
-    );
+    memberSearchDatas.value.USA = memberSearch_place("USA", "All", result);
+    memberSearchDatas.value.TW = memberSearch_place("TW", "All", result);
   } else {
     memberSearchDatas.value.USA = memberSearch_place(
       "USA",
-      isStates.value,
+      "All",
       memberDatas.value,
     );
     memberSearchDatas.value.TW = memberSearch_place(
       "TW",
-      isStates.value,
+      "All",
       memberDatas.value,
     );
   }

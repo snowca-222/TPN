@@ -5,6 +5,7 @@ import { useI18n } from "vue-i18n";
 const props = defineProps({
   state: Object,
 });
+const memberDatas = inject("memberDatas");
 const memberSearchDatas = inject("memberSearchDatas");
 const countrySelect = inject("countrySelect");
 const isStates = inject("isStates");
@@ -12,21 +13,34 @@ const i18n = useI18n();
 
 const isCounter = ref(0);
 
-const handleState = (setState) => {
-  isStates.value = setState;
-  console.log(setState);
+const handleState = (setCode, setName) => {
+  let setLists = [];
+  isStates.value = setCode;
+  if (countrySelect.value === "USA") {
+    memberSearchDatas.value.USA.filter((e) => {
+      e.activeLicensed.forEach((state) => {
+        if (state === setName) {
+          setLists.push(e);
+        }
+      });
+    });
+  }
+  console.log(setLists);
 };
 
 const counter = computed(() => {
   if (countrySelect.value === "USA") {
+    isCounter.value = 0;
     memberSearchDatas.value.USA.filter((e) => {
       e.activeLicensed.forEach((state) => {
+        console.log(state);
         if (state === props.state.en_name) {
           isCounter.value++;
         }
       });
     });
   } else {
+    isCounter.value = 0;
     memberSearchDatas.value.TW.filter((e) => {
       e.servicesInTW.forEach((state) => {
         if (state === props.state.ch_name) {
@@ -40,7 +54,7 @@ const counter = computed(() => {
 </script>
 <template>
   <button
-    @click="handleState(state.city_code)"
+    @click="handleState(state.city_code, state.en_name)"
     :disabled="counter === 0"
     v-ripple
     :class="[
