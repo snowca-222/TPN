@@ -16,6 +16,7 @@ const deviceWidth = inject("deviceWidth");
 const countrySelect = inject("countrySelect");
 const isStates = inject("isStates");
 const memberSearchDatas = inject("memberSearchDatas");
+const showStateResult = inject("showStateResult");
 
 const countryLists = ref([
   {
@@ -33,11 +34,12 @@ const handleCountry = (setCountry) => {
   if (countrySelect.value !== setCountry) {
     countrySelect.value = setCountry;
     isStates.value = "All";
+    showStateResult.value = false;
   }
 };
 const handleState = (setState) => {
   isStates.value = setState;
-  console.log(setState);
+  showStateResult.value = false;
 };
 
 const viewState = ref(false);
@@ -71,6 +73,7 @@ const handleSetCounts = () => {
 };
 onMounted(() => {
   handleSetCounts();
+  isStates.value = "All";
 });
 provide("handleFilterBox", handleFilterBox);
 </script>
@@ -125,7 +128,7 @@ provide("handleFilterBox", handleFilterBox);
         <div
           class="flex flex-wrap text-sm md:text-base [&>div]:px-2 [&>div]:py-1.5"
         >
-          <div class="w-full md:w-3/12 xl:w-2/12">
+          <div class="stateBtnWidth w-full">
             <button
               @click="handleState('All')"
               v-ripple
@@ -149,7 +152,7 @@ provide("handleFilterBox", handleFilterBox);
           </div>
           <template v-if="countrySelect === 'USA'">
             <template v-for="(state, idx) in States_USA" :key="state.city_code">
-              <div v-if="idx < viewCounts" class="w-1/2 md:w-3/12 xl:w-2/12">
+              <div v-if="idx < viewCounts" class="stateBtnWidth w-1/2">
                 <stateCounter :state="state" />
               </div>
             </template>
@@ -157,7 +160,7 @@ provide("handleFilterBox", handleFilterBox);
 
           <template v-else>
             <template v-for="(state, idx) in States_TW" :key="state.city_code">
-              <div v-if="idx < viewCounts" class="w-1/2 md:w-3/12 xl:w-2/12">
+              <div v-if="idx < viewCounts" class="stateBtnWidth w-1/2">
                 <stateCounter :state="state" />
               </div>
             </template>
@@ -202,3 +205,8 @@ provide("handleFilterBox", handleFilterBox);
     <FilterListsPanel v-if="isFilterBox" />
   </div>
 </template>
+<style scoped>
+.stateBtnWidth {
+  @apply md:w-4/12 lg:w-3/12 xl:w-3/12 2xl:w-2/12;
+}
+</style>

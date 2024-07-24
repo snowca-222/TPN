@@ -11,6 +11,8 @@ const memberDatas = inject("memberDatas");
 const memberSearchDatas = inject("memberSearchDatas");
 const countrySelect = inject("countrySelect");
 const isStates = inject("isStates");
+const showStateResult = inject("showStateResult");
+const showStateMember = inject("showStateMember");
 
 onMounted(() => {
   if (!memberDatas.value) {
@@ -45,25 +47,34 @@ onMounted(() => {
       <UserInfoBoxSkeleton v-for="i in 3" :key="i" />
     </template>
     <template v-else>
-      <template v-if="countrySelect === 'USA'">
-        <template v-if="memberSearchDatas.USA.length > 0">
-          <UserInfoBox
-            v-for="memberData in memberSearchDatas.USA"
-            :key="memberData.name"
-            :memberData="memberData"
-          />
-        </template>
-        <NotFound v-else />
+      <template v-if="showStateResult">
+        <UserInfoBox
+          v-for="memberData in showStateMember"
+          :key="memberData.name"
+          :memberData="memberData"
+        />
       </template>
-      <template v-else-if="countrySelect === 'TW'">
-        <template v-if="memberSearchDatas.TW.length > 0">
-          <UserInfoBox
-            v-for="memberData in memberSearchDatas.TW"
-            :key="memberData.name"
-            :memberData="memberData"
-          />
+      <template v-else>
+        <template v-if="countrySelect === 'USA'">
+          <template v-if="memberSearchDatas.USA.length > 0">
+            <UserInfoBox
+              v-for="memberData in memberSearchDatas.USA"
+              :key="memberData.name"
+              :memberData="memberData"
+            />
+          </template>
+          <NotFound v-else />
         </template>
-        <NotFound v-else />
+        <template v-else-if="countrySelect === 'TW'">
+          <template v-if="memberSearchDatas.TW.length > 0">
+            <UserInfoBox
+              v-for="memberData in memberSearchDatas.TW"
+              :key="memberData.name"
+              :memberData="memberData"
+            />
+          </template>
+          <NotFound v-else />
+        </template>
       </template>
     </template>
   </div>

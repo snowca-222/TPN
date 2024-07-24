@@ -1,6 +1,7 @@
 <script setup>
 import { ref, inject, onMounted } from "vue";
-import { filters } from "@/libs/js/filter/en-US.js";
+import { filters_en } from "@/libs/js/filter/en-US.js";
+import { filters_tw } from "@/libs/js/filter/zh-TW.js";
 import { memberSearch_place } from "@/libs/js/fn";
 
 const handleFilterBox = inject("handleFilterBox");
@@ -8,9 +9,10 @@ const memberDatas = inject("memberDatas"); // 利用原始資料進行搜尋
 const memberSearchDatas = inject("memberSearchDatas");
 const countrySelect = inject("countrySelect");
 const isStates = inject("isStates");
+const showStateResult = inject("showStateResult");
 
 const filterCount = ref(0);
-const setFilters = ref(filters); // 複製一組選單列，目的是為了即時顯示 checked 狀態
+const setFilters = ref(countrySelect.value === "USA" ? filters_en : filters_tw); // 複製一組選單列，目的是為了即時顯示 checked 狀態
 const handleCount = (check) => {
   check ? filterCount.value++ : filterCount.value--;
 };
@@ -56,6 +58,7 @@ const handleClose = () => {
 const handleSearch = () => {
   handleFilterBox();
   isStates.value = "All";
+  showStateResult.value = false;
   if (filterCount.value !== 0) {
     let values = {};
     setFilters.value.forEach((r) => {
@@ -82,8 +85,11 @@ const handleSearch = () => {
       });
       return f;
     });
-    memberSearchDatas.value.USA = memberSearch_place("USA", "All", result);
-    memberSearchDatas.value.TW = memberSearch_place("TW", "All", result);
+    if (countrySelect.value === "USA") {
+      memberSearchDatas.value.USA = memberSearch_place("USA", "All", result);
+    } else {
+      memberSearchDatas.value.TW = memberSearch_place("TW", "All", result);
+    }
   } else {
     memberSearchDatas.value.USA = memberSearch_place(
       "USA",

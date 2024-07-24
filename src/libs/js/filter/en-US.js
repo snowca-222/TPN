@@ -1,4 +1,4 @@
-export const filters = [
+export const filters_en = [
     {
         title: "Sliding Scale",
         lists: [
