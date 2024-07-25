@@ -50,7 +50,9 @@ const countrySelect = inject("countrySelect");
             </li>
           </template>
           <template v-else-if="countrySelect === 'TW'">
-            <li>{{ memberData.activeInTW }}</li>
+            <li v-for="(list, idx) in memberData.activeInTW" :key="idx">
+              {{ list }}
+            </li>
             <li class="flex">
               <div v-for="(place, idx) in memberData.servicesInTW" :key="place">
                 {{ place }}

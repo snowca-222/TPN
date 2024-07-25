@@ -327,38 +327,13 @@ export const filters_tw = [
         title: "License Type",
         lists: [
           {
-            type: "Clinical Psychologist",
+            type: "臨床心理師 Clinical Psychologist",
             name: "Clinical Psychologist",
             checked: false,
           },
           {
-            type: "Counseling Psychologist",
+            type: "諮商心理師 Counseling Psychologist",
             name: "Counseling Psychologist",
-            checked: false,
-          },
-        ]
-      },{
-        title: "Pronouns",
-        lists: [
-          {
-            type: "She, Her, Hers",
-            name: "She, Her, Hers",
-            checked: false,
-          },{
-            type: "He, Him, His",
-            name: "He, Him, His",
-            checked: false,
-          },{
-            type: "They, Them, Theirs",
-            name: "They, Them, Theirs",
-            checked: false,
-          },{
-            type: "Ze, Zir, Zirs",
-            name: "Ze, Zir, Zirs",
-            checked: false,
-          },{
-            type: "Ze, Hir, Hirs",
-            name: "Ze, Hir, Hirs",
             checked: false,
           },
         ]

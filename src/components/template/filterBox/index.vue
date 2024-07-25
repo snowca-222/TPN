@@ -1,6 +1,5 @@
 <script setup>
 import { ref, provide, inject, onMounted } from "vue";
-import { useI18n } from "vue-i18n";
 import Button from "@/components/template/button/index.vue";
 import FilterListsPanel from "@/components/template/filterBox/filterLists.vue";
 import stateCounter from "@/components/template/filterBox/stateCounter.vue";
@@ -11,7 +10,6 @@ import States_TW from "@/libs/js/states/TW.json";
 import arrow_down from "@image/icons/arrow_drop_down.vue";
 import arrow_up from "@image/icons/arrow_drop_up.vue";
 
-const i18n = useI18n();
 const deviceWidth = inject("deviceWidth");
 const countrySelect = inject("countrySelect");
 const isStates = inject("isStates");
@@ -30,6 +28,15 @@ const countryLists = ref([
     flag: flag_TW,
   },
 ]);
+
+const states_TW_only = ref([
+  {
+    en_name: "Online consultation",
+    ch_name: "線上諮商（全國各地皆可看診）",
+    city_code: "Online",
+  },
+]);
+
 const handleCountry = (setCountry) => {
   if (countrySelect.value !== setCountry) {
     countrySelect.value = setCountry;
@@ -75,6 +82,7 @@ onMounted(() => {
   handleSetCounts();
   isStates.value = "All";
 });
+
 provide("handleFilterBox", handleFilterBox);
 </script>
 <template>
@@ -161,6 +169,14 @@ provide("handleFilterBox", handleFilterBox);
           <template v-else>
             <template v-for="(state, idx) in States_TW" :key="state.city_code">
               <div v-if="idx < viewCounts" class="stateBtnWidth w-1/2">
+                <stateCounter :state="state" />
+              </div>
+            </template>
+            <template
+              v-for="(state, idx) in states_TW_only"
+              :key="state.city_code"
+            >
+              <div class="stateBtnWidth w-1/2">
                 <stateCounter :state="state" />
               </div>
             </template>

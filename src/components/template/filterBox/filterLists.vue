@@ -169,9 +169,7 @@ onMounted(() => {
         >
           <template v-if="filterList.title !== 'Pronouns'">
             <div class="py-2.5 font-bold text-[--color-11] xl:text-xl">
-              <template v-if="filterList.title !== 'Pronouns'">
-                {{ filterList.title }}
-              </template>
+              {{ filterList.title }}
             </div>
             <div class="flex flex-col flex-wrap md:flex-row">
               <template v-if="filterList.title === 'Areas of Specialty'">
@@ -264,7 +262,6 @@ onMounted(() => {
                   <div class="w-fit">{{ list.name }}</div>
                 </label>
               </template>
-              <template v-else-if="filterList.title === 'Pronouns'"> </template>
               <template v-else>
                 <label
                   v-for="list in filterList.lists"

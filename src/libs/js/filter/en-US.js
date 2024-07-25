@@ -502,30 +502,5 @@ export const filters_en = [
             checked: false,
           },
         ]
-      },{
-        title: "Pronouns",
-        lists: [
-          {
-            type: "She, Her, Hers",
-            name: "She, Her, Hers",
-            checked: false,
-          },{
-            type: "He, Him, His",
-            name: "He, Him, His",
-            checked: false,
-          },{
-            type: "They, Them, Theirs",
-            name: "They, Them, Theirs",
-            checked: false,
-          },{
-            type: "Ze, Zir, Zirs",
-            name: "Ze, Zir, Zirs",
-            checked: false,
-          },{
-            type: "Ze, Hir, Hirs",
-            name: "Ze, Hir, Hirs",
-            checked: false,
-          },
-        ]
       }
 ]
