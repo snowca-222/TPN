@@ -71,7 +71,7 @@ const counter = computed(() => {
     :disabled="counter === 0"
     v-ripple
     :class="[
-      'w-full rounded-md border border-[--color-11] px-5 py-2 disabled:bg-gray-200 disabled:text-gray-400',
+      'w-full whitespace-nowrap rounded-md border border-[--color-11] px-1 py-2 disabled:bg-gray-200 disabled:text-gray-400',
       {
         'btn_dark_purple bg-[--color-12] text-white':
           isStates === state.city_code,

@@ -54,7 +54,8 @@ const viewCounts = ref(0);
 const handleExpand = () => {
   if (viewState.value) {
     viewState.value = false;
-    viewCounts.value = 17;
+    // viewCounts.value = 17;
+    handleSetCounts();
   } else {
     viewState.value = true;
     viewCounts.value = States_USA.length;
@@ -134,7 +135,7 @@ provide("handleFilterBox", handleFilterBox);
         }}</span>
 
         <div
-          class="flex flex-wrap text-sm md:text-base [&>div]:px-2 [&>div]:py-1.5"
+          class="flex flex-wrap text-xs sm:text-sm md:text-base [&>div]:px-2 [&>div]:py-1.5"
         >
           <div class="stateBtnWidth w-full">
             <button
@@ -172,11 +173,11 @@ provide("handleFilterBox", handleFilterBox);
                 <stateCounter :state="state" />
               </div>
             </template>
-            <template
-              v-for="(state, idx) in states_TW_only"
-              :key="state.city_code"
-            >
-              <div class="stateBtnWidth w-1/2">
+            <template v-for="state in states_TW_only" :key="state.city_code">
+              <div
+                v-if="States_TW.length + 1 < viewCounts"
+                class="stateBtnWidth w-1/2"
+              >
                 <stateCounter :state="state" />
               </div>
             </template>

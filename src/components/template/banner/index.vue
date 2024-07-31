@@ -1,4 +1,14 @@
 <script setup>
+import { ref, onMounted, computed } from "vue";
+import axios from "axios";
+import "animate.css";
+const titleSlogan = axios(import.meta.env.VITE_SLOGAN_URL);
+
+const setText = ref({
+  title: "",
+  slogan: "",
+});
+
 const handleDrag = () => {
   let height = document.body.offsetHeight;
   document.querySelector("#main").scrollTo({
@@ -6,14 +16,39 @@ const handleDrag = () => {
     behavior: "smooth",
   });
 };
+onMounted(() => {
+  titleSlogan
+    .then((res) => {
+      setText.value.title = res.data[0].Title;
+      setText.value.slogan = res.data[0].Slogan;
+      doFadeIn.value = true;
+    })
+    .catch((err) => {
+      setText.value.title = "Taiwan Psychology Network";
+      setText.value.slogan = "台美心理專業交流協會";
+    });
+});
+const doFadeIn = ref(false);
 </script>
 <template>
   <div class="relative">
     <div
-      class="absolute left-0 right-0 top-1/2 mx-auto w-11/12 -translate-y-1/2 rounded-md bg-black/50 p-2.5 text-white"
+      class="absolute left-0 right-0 top-1/2 mx-auto w-11/12 -translate-y-1/2"
     >
-      <h2 class="py-5 text-center text-4xl font-bold">this is Title</h2>
-      <p class="py-2 text-center text-xl">this is Slogan</p>
+      <div
+        :class="[
+          'rounded-md bg-black/50 p-2.5 text-white',
+          { 'animate__animated animate__fadeInUp': doFadeIn },
+          { hidden: !doFadeIn },
+        ]"
+      >
+        <h2 class="py-5 text-center text-lg font-bold md:text-2xl lg:text-4xl">
+          {{ setText.title }}
+        </h2>
+        <p class="py-2 text-center text-base md:text-lg lg:text-xl">
+          {{ setText.slogan }}
+        </p>
+      </div>
     </div>
     <div
       @click="handleDrag"

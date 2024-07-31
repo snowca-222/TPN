@@ -53,6 +53,7 @@ const handleServiceFilter = (setEvent) => {
 const handleClose = () => {
   handleReset();
   handleFilterBox();
+  handleOriginDatas();
 };
 
 const handleSearch = () => {
@@ -91,17 +92,20 @@ const handleSearch = () => {
       memberSearchDatas.value.TW = memberSearch_place("TW", "All", result);
     }
   } else {
-    memberSearchDatas.value.USA = memberSearch_place(
-      "USA",
-      "All",
-      memberDatas.value,
-    );
-    memberSearchDatas.value.TW = memberSearch_place(
-      "TW",
-      "All",
-      memberDatas.value,
-    );
+    handleOriginDatas();
   }
+};
+const handleOriginDatas = () => {
+  memberSearchDatas.value.USA = memberSearch_place(
+    "USA",
+    "All",
+    memberDatas.value,
+  );
+  memberSearchDatas.value.TW = memberSearch_place(
+    "TW",
+    "All",
+    memberDatas.value,
+  );
 };
 const handleSetCounts = () => {
   setFilters.value.forEach((r) => {
