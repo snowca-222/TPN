@@ -147,7 +147,9 @@ const listBox_right = ref([
                   ]"
                 >
                   <WorldIcon setColor="#8270b2" class="h-9 w-9 sm:h-9 sm:w-5" />
-                  <span class="ml-2 hidden text-xl sm:block"> Website </span>
+                  <span class="ml-2 hidden text-xl sm:block">
+                    {{ $t("button.website") }}
+                  </span>
                 </a>
               </template>
             </li>
@@ -172,6 +174,9 @@ const listBox_right = ref([
                 <li v-for="item in memberData.activeLicensed" :key="item">
                   {{ item }}
                 </li>
+                <li v-for="item in memberData.servicesInTW" :key="item">
+                  {{ item }}
+                </li>
               </template>
             </ul>
             <template v-if="list.type === 'Licensure Info'">
@@ -190,13 +195,15 @@ const listBox_right = ref([
                   </ul>
                 </div>
               </template>
-              <template v-if="memberData.activeInTW">
+              <template v-if="memberData.activeInTW.length > 0">
                 <div>
                   <span class="text-sm font-bold text-[--color-2] md:text-xl"
                     >Taiwan</span
                   >
                   <ul class="list_style type_A">
-                    <li>{{ memberData.activeInTW }}</li>
+                    <li v-for="(list, idx) in memberData.activeInTW" :key="idx">
+                      {{ list }}
+                    </li>
                   </ul>
                 </div>
               </template>

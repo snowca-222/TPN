@@ -71,7 +71,7 @@ const countrySelect = inject("countrySelect");
             <button
               class="btn_light_purple w-full rounded-md bg-[--color-6] py-2.5 text-[--color-7] hover:text-[--color-17]"
             >
-              Website
+              {{ $t("button.website") }}
             </button>
           </a>
         </template>
@@ -81,7 +81,7 @@ const countrySelect = inject("countrySelect");
               class="btn_disabled w-full rounded-md py-2.5 text-[--color-21]"
               disabled
             >
-              Website
+              {{ $t("button.website") }}
             </button>
           </div>
         </template>
@@ -92,7 +92,7 @@ const countrySelect = inject("countrySelect");
           <button
             class="btn_orange w-full rounded-md bg-[--color-9] py-2.5 text-[--color-10] hover:bg-[--color-4] hover:text-[--color-5]"
           >
-            View Profile
+            {{ $t("button.profile") }}
           </button>
         </router-link>
       </div>

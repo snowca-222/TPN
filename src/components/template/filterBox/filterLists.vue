@@ -304,7 +304,9 @@ onMounted(() => {
       <div
         class="flex items-center justify-between rounded-b-lg bg-[--color-14] px-5 py-5"
       >
-        <div class="text-white">( Selected: {{ filterCount }} )</div>
+        <div class="text-white">
+          ( {{ $t("status.selected") }}: {{ filterCount }} )
+        </div>
 
         <button
           @click="handleSearch"

@@ -4,7 +4,9 @@
   "button.close": "關閉",
   "button.collapse": "全部收合",
   "button.expand": "全部展開",
+  "button.profile": "查看資料",
   "button.search": "搜尋",
+  "button.website": "個人網站",
   "country.TW": "台灣",
   "country.USA": "美國",
   "filter.popup.title": "篩選條件",
@@ -62,5 +64,6 @@
   "state.usa.WV": "西維吉尼亞州",
   "state.usa.WY": "懷俄明州",
   "state.view.collapse": "關閉",
-  "state.view.expand": "查看全部"
+  "state.view.expand": "查看全部",
+  "status.selected": "已選擇"
 }

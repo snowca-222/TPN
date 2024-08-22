@@ -4,7 +4,9 @@
   "button.close": "Close",
   "button.collapse": "Collapse all",
   "button.expand": "Expand all",
+  "button.profile": "View Profile",
   "button.search": "Search",
+  "button.website": "Website",
   "country.TW": "Taiwan",
   "country.USA": "USA",
   "filter.popup.title": "All filters",
@@ -62,5 +64,6 @@
   "state.usa.WV": "West Virginia",
   "state.usa.WY": "Wyoming",
   "state.view.collapse": "Close",
-  "state.view.expand": "View all states"
+  "state.view.expand": "View all states",
+  "status.selected": "Selected"
 }
