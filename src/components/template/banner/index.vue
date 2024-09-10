@@ -1,8 +1,6 @@
 <script setup>
-import { ref, onMounted, computed } from "vue";
-import axios from "axios";
+import { ref, onMounted } from "vue";
 import "animate.css";
-const titleSlogan = axios(import.meta.env.VITE_SLOGAN_URL);
 
 const setText = ref({
   title: "",
@@ -17,16 +15,9 @@ const handleDrag = () => {
   });
 };
 onMounted(() => {
-  titleSlogan
-    .then((res) => {
-      setText.value.title = res.data[0].Title;
-      setText.value.slogan = res.data[0].Slogan;
-      doFadeIn.value = true;
-    })
-    .catch((err) => {
-      setText.value.title = "Taiwan Psychology Network";
-      setText.value.slogan = "台美心理專業交流協會";
-    });
+  setText.value.title = localStorage.getItem("title");
+  setText.value.slogan = localStorage.getItem("slogan");
+  doFadeIn.value = true;
 });
 const doFadeIn = ref(false);
 </script>
