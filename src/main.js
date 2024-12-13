@@ -21,13 +21,13 @@ app.use(router).use(i18n)
 app.directive("ripple", ripple)
 
 const titleSlogan = axios(import.meta.env.VITE_SLOGAN_URL);
-titleSlogan.then(res => {
-    if(res.status === 200){
-        localStorage.setItem('slogan', res.data[0].Slogan)
-        localStorage.setItem('title', res.data[0].Title)
-    }else{
-        localStorage.setItem('slogan', '台美心理專業交流協會')
-        localStorage.setItem('title', 'Taiwan Psychology Network Provider Directory')
-    }
-    app.mount('#app')
-})
+// titleSlogan.then(res => {
+//     if(res.status === 200){
+//         localStorage.setItem('slogan', res.data[0].Slogan)
+//         localStorage.setItem('title', res.data[0].Title)
+//     }else{
+//         localStorage.setItem('slogan', '台美心理專業交流協會')
+//         localStorage.setItem('title', 'Taiwan Psychology Network Provider Directory')
+//     }
+// })
+app.mount('#app')

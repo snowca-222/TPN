@@ -1,6 +1,25 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, inject } from "vue";
 import "animate.css";
+import { getTitle } from "@/libs/js/api/title.js";
+const loading = inject("loading");
+const getTitleInfo = () => {
+  getTitle.then((res) => {
+    if (res.status === 200) {
+      setText.value = {
+        title: res.data[0].Title,
+        slogan: res.data[0].Slogan,
+      };
+    } else {
+      setText.value = {
+        title: "台美心理專業交流協會",
+        slogan: "Taiwan Psychology Network Provider Directory",
+      };
+    }
+    loading.value = false;
+    doFadeIn.value = true;
+  });
+};
 
 const setText = ref({
   title: "",
@@ -15,9 +34,7 @@ const handleDrag = () => {
   });
 };
 onMounted(() => {
-  setText.value.title = localStorage.getItem("title");
-  setText.value.slogan = localStorage.getItem("slogan");
-  doFadeIn.value = true;
+  getTitleInfo();
 });
 const doFadeIn = ref(false);
 </script>
